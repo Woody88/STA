@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users
+
+  devise_for :users, :controllers => { :registrations => 'profile_account'}
+
+  devise_scope :user do
+    as :user do
+      get '/signin' => 'devise/sessions#new'
+      post 'signin' => 'devise/sessions#create'
+      get '/signup' => 'devise/registrations#new'
+      get '/profile/:id' => 'profile_account#edit', as: 'profile'
+      put '/profile' => 'profile_account#update'
+      delete '/signout' => 'devise/sessions#destroy'
+    end
+  end
+
   root 'staticpages#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

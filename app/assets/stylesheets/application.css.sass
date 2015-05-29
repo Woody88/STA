@@ -10,11 +10,44 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require_tree .
+
  */
 @import "bootstrap-sprockets"
 @import "bootstrap"
+@import url("http://fonts.googleapis.com/css?family=Lato:300,400,400italic,900italic")
 
+*
+  padding: 0
+  margin: 0
 
+.main
+  padding-top: 50px
+::-webkit-scrollbar
+  width: 8px
+
+::-webkit-scrollbar-track
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+  -webkit-border-radius: 10px
+  border-radius: 10px
+
+::-webkit-scrollbar-thumb
+  -webkit-border-radius: 10px
+  border-radius: 10px
+  background: rgba(211,211,211,0.8) 
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5)
+
+::-webkit-scrollbar-thumb:window-inactive
+  background: rgba(211,211,211,0.4)
+
+html, body
+  height: 100%
+  background-size: 100% auto
+
+div.content
+  padding-top: 52px
+
+.container.registration
+  margin: 10px auto
 

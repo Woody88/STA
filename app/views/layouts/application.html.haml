@@ -2,12 +2,48 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title STA
+    %title
+      =yield(:title) 
+
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    .navbar.navbar-fixed-top
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+    .navbar.navbar-default.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          %a.navbar-brand{:href => "#"}><
+            STA
+            %small>< Center
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a{:href => "#"} About
+          %li
+            %a{:href => "#"} Contact       
+          
+          -if user_signed_in?
+            %li
+              = link_to profile_path(current_user) do
+                %span.glyphicon.glyphicon-cog
+                Account 
+
+            %li
+              = link_to signout_path, {:method => :delete} do
+                %span.glyphicon.glyphicon-log-out
+                Logout
+          -else     
+            %li
+              = link_to signin_path do
+                %span.glyphicon.glyphicon-log-in
+                Login
+            %li
+              = link_to signup_path do
+                %span.glyphicon.glyphicon-user
+                Sign Up
+
+    - if user_signed_in?  
+      %p.notice= notice
+      %p.alert= alert
+    
+    %div.content
+      = yield
