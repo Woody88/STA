@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :news_feeds
   devise_for :users, :controllers => { :registrations => 'profile_account'}
 
   devise_scope :user do

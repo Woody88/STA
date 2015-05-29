@@ -22,8 +22,6 @@
             %a{:href => "#"} Contact       
           
           -if user_signed_in?
-            %li 
-              %a{:href=>"Calendar"}
             %li
               = link_to profile_path(current_user) do
                 %span.glyphicon.glyphicon-cog
@@ -43,9 +41,34 @@
                 %span.glyphicon.glyphicon-user
                 Sign Up
 
-    - if flash  
-      %p.notice= notice
-      %p.alert= alert
+.container-fluid.profile
+  .row
+    .col-md-3
+      .panel.panel-default.logo
+        .panel-body
+          .profile-pic
+            %img{:src => "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y"}
+          %h4 Welcome, #{profile.fname}
+
+      .panel.panel-default
+        .panel-heading Menu
+        .panel-body
+          %ul.nav.nav-pills.nav-stacked
+            %li
+              = link_to "News", news_feeds_path
+            %li
+              %a{:href => "#"} Trade Center
+            %li
+              %a{:href => "#"} Calendar
+            %li
+              %a{:href => "#"} Aeronet
+            %li
+              %a{:href => "#"} Air Canada
     
-    %div.content
-      = yield
+    .col-md-9
+      .panel.panel-default.dash-content
+        .panel-heading
+          Profile Account
+        .panel-body
+          = yield
+        

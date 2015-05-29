@@ -1,0 +1,25 @@
+%h1 Listing news_feeds
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Body
+      %th User
+      %th
+      %th
+      %th
+
+  %tbody
+    - @news_feeds.each do |news_feed|
+      %tr
+        %td= news_feed.title
+        %td= news_feed.body
+        %td= news_feed.user
+        %td= link_to 'Show', news_feed
+        %td= link_to 'Edit', edit_news_feed_path(news_feed)
+        %td= link_to 'Destroy', news_feed, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New News feed', new_news_feed_path

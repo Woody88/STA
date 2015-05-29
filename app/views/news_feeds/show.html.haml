@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @news_feed.title
+%p
+  %b Body:
+  = @news_feed.body
+%p
+  %b User:
+  = @news_feed.user
+
+= link_to 'Edit', edit_news_feed_path(@news_feed)
+\|
+= link_to 'Back', news_feeds_path
