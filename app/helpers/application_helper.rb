@@ -4,6 +4,8 @@ module ApplicationHelper
 	end
 
 	def profile
-		current_user.profile
+		if current_user
+			current_user.profile
+		end
 	end
 end

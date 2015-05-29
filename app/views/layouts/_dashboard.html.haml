@@ -1,0 +1,39 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title
+      =yield(:title) 
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+
+.container-fluid.profile
+  .row
+    .col-md-3
+      .panel.panel-default.logo
+        .panel-body
+          .profile-pic
+            %img{:src => "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y"}
+          %h4 Welcome, #{profile.fname}
+
+      .panel.panel-default
+        .panel-heading Menu
+        .panel-body
+          %ul.nav.nav-pills.nav-stacked
+            %li
+              = link_to "News", news_feeds_path
+            %li
+              %a{:href => "#"} Trade Center
+            %li
+              %a{:href => "#"} Calendar
+            %li
+              %a{:href => "#"} Aeronet
+            %li
+              %a{:href => "#"} Air Canada
+    
+    .col-md-6
+      = yield
+        

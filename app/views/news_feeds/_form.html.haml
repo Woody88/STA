@@ -3,8 +3,7 @@
 
   .form-inputs
     = f.input :title
-    = f.input :body
-    = f.association :user
+    = f.input :body, input_html: {rows: 10, cols: 10}
 
   .form-actions
     = f.button :submit

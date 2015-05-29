@@ -4,7 +4,7 @@ class NewsFeedsController < ApplicationController
   # GET /news_feeds
   # GET /news_feeds.json
   def index
-    @news_feeds = NewsFeed.all
+    @news_feeds = NewsFeed.all.order(created_at: :desc)
   end
 
   # GET /news_feeds/1
@@ -25,6 +25,7 @@ class NewsFeedsController < ApplicationController
   # POST /news_feeds.json
   def create
     @news_feed = NewsFeed.new(news_feed_params)
+    @news_feed.user_id = current_user
 
     respond_to do |format|
       if @news_feed.save
