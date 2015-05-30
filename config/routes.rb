@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'calendar/index'
+
   resources :news_feeds
   devise_for :users, :controllers => { :registrations => 'profile_account'}
 

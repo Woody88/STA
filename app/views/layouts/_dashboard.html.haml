@@ -16,7 +16,7 @@
       .panel.panel-default.logo
         .panel-body
           .profile-pic
-            %img{:src => "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y"}
+            = image_tag avatar_url(current_user)
           %h4 Welcome, #{profile.fname}
 
       .panel.panel-default
@@ -28,11 +28,11 @@
             %li
               %a{:href => "#"} Trade Center
             %li
-              %a{:href => "#"} Calendar
+              = link_to "Calendar", calendar_index_path
             %li
-              %a{:href => "#"} Aeronet
+              %a{:href => "https://my.aircanada.ca"} Aeronet
             %li
-              %a{:href => "#"} Air Canada
+              %a{:href => "http://aircanada.ca"} Air Canada
     
     .col-md-6
       = yield
