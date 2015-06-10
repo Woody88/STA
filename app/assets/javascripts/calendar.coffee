@@ -5,6 +5,7 @@
 $(document).ready ->
   $('#calendar').fullCalendar
     editable: true,
+    displayEventEnd: true,
     header:
       left: 'prev,next today',
       center: 'title',
@@ -13,13 +14,18 @@ $(document).ready ->
     height: 500,
     slotMinutes: 30,
 
-    eventSources: [{
-      url: '/events',
-    }],
+    events: "/shifts/index.json",
 
-    timeFormat: 'h:mm t{ - h:mm t} ',
+    timeFormat: 'H(:mm)',
     dragOpacity: "0.5"
 
+    eventDataTransform: (eventData) -> 
+      s = moment(eventData.start).zone(eventData.start).format("HH:mm");
+      if s == "00:00"
+        eventData.start = new Date(86400000);
+        eventData.end = new Date(86400000);
+      eventData
+      
     eventDrop: (event, dayDelta, minuteDelta, allDay, revertFunc) ->
       updateEvent(event);
 

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'shifts/index'
+
+  resources :bid_lines, only: [:index, :show]
+
   get 'calendar/index'
 
   resources :news_feeds

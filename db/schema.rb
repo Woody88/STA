@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529180248) do
+ActiveRecord::Schema.define(version: 20150610034919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bid_lines", force: :cascade do |t|
+    t.json     "lines"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "news_feeds", force: :cascade do |t|
     t.string   "title"
@@ -38,6 +44,19 @@ ActiveRecord::Schema.define(version: 20150529180248) do
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
+  create_table "shifts", force: :cascade do |t|
+    t.string   "position"
+    t.date     "date"
+    t.datetime "start_time"
+    t.datetime "finish_time"
+    t.string   "scheduled"
+    t.integer  "profile_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "shifts", ["profile_id"], name: "index_shifts_on_profile_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -58,4 +77,5 @@ ActiveRecord::Schema.define(version: 20150529180248) do
 
   add_foreign_key "news_feeds", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "shifts", "profiles"
 end
