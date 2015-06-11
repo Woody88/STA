@@ -1,7 +1,7 @@
 class Array
-       def except(value)
-         self - [value]
-       end
+    def except(value)
+        self - [value]
+    end
 end
 
 class Hash
@@ -54,10 +54,11 @@ module Calendar
                 case 
 
                 when @loop_set < @days_length   
-                    shift = @line[@days[@loop_set]].merge(:date => date, :profile_id => @profile.id)
+                    shift = @line[@days[@loop_set]].merge(:date => date) 
+                    #:profile_id => @profile.id
                     shift[:start_time] = "#{shift[:date]} #{shift[:start_time]}"
                     shift[:finish_time] = "#{shift[:date]} #{shift[:finish_time]}"
-                    Shift.create!(shift)
+                    @profile.shifts.create(shift)
                     #@shifts["day_#{@day}".to_sym] = shift
                     #puts "in less than =  #{@loop_set}"
                     #@day += 1
@@ -65,10 +66,11 @@ module Calendar
                     
 
                 when @loop_set == @days_length
-                    shift = @line[@days[@loop_set]].merge(:date => date, :profile_id => @profile.id)
+                    shift = @line[@days[@loop_set]].merge(:date => date)
+                    #:profile_id => @profile.id
                     shift[:start_time] = "#{shift[:date]} #{shift[:start_time]}"
                     shift[:finish_time] = "#{shift[:date]} #{shift[:finish_time]}"
-                    Shift.create!(shift)
+                    @profile.shifts.create(shift)
                     #@shifts["day_#{@day}".to_sym] = shift
                     #puts "in == #{@loop_set}"
                     #@day += 1  

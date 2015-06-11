@@ -3,11 +3,6 @@ module ApplicationHelper
   		content_for :title, page_title.to_s
 	end
 
-	def profile
-		if current_user
-			current_user.profile
-		end
-	end
 
 	def avatar_url(user)
     	default_url = "http://www.gravatar.com/avatar/HASH"
