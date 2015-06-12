@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-jQuery -> 
+ready =  -> 
 	$('button#enable_bidline').click ->
 		if $('.enable_bidline_text').text() == 'Enable'
 			isGood = confirm("Warning: If you enable this field and change your line number, 
@@ -21,7 +21,7 @@ jQuery ->
 		$('#user_profile_attributes_bid_line').prop 'disabled', value
 
 		
-			
-	  
+$(document).ready(ready) 
+$(document).on('page:load', ready)
         
     	

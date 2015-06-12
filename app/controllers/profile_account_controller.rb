@@ -10,7 +10,7 @@ class ProfileAccountController < Devise::RegistrationsController
   	end
 
   	def update
-      if params[:user][:profile_attributes][:bid_line].empty?
+      if params[:user][:profile_attributes][:bid_line].nil?
         super
       else
         profile.shifts.destroy_all unless profile.shifts.nil?

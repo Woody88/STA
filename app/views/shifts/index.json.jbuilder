@@ -3,4 +3,6 @@ json.array!(@shifts) do |shift|
   json.start shift.start_time
   json.end shift.finish_time
   json.title shift.position
+  json.id shift.id
+  
 end
