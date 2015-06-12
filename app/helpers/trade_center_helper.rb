@@ -1,0 +1,2 @@
+module TradeCenterHelper
+end

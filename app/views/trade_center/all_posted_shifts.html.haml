@@ -1,0 +1,17 @@
+.panel.panel-defautlt.calendar
+  .panel-heading
+    %h3 Trade Board
+  .panel-body
+    %table.table.table-striped
+      %thead
+        %th Name
+        %th Date
+        %th Time
+        %th Position
+        %th Selection
+    - if @posted_shifts.empty?
+      %p No posted shifts at this time.
+    - else
+      %tbody
+        - for posted_shift in @posted_shifts
+          %tr  

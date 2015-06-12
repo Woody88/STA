@@ -1,4 +1,5 @@
 class ProfileAccountController < Devise::RegistrationsController
+  before_action :authenticate_user!
   require 'pry'
   require 'calendar_setup'
 
