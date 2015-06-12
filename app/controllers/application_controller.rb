@@ -4,6 +4,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  helper_method :profile
+
+
+  def profile
+    if current_user
+      current_user.profile
+    end
+  end
+
 
     def after_sign_in_path_for(resource)
       news_feeds_path
@@ -17,7 +26,7 @@ class ApplicationController < ActionController::Base
 		    :password,
 		    :password_confirmation,
 		    :current_password,
-		    profile_attributes: [:fname, :lname, :bid_line]
+		    profile_attributes: [:fname, :lname, :bid_line, :id]
   		)}
     end
 
