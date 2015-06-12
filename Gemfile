@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 #Added gems
 gem 'paloma'
 gem 'devise'
+gem 'workflow'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem "haml-rails", "~> 0.9"
 gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form'

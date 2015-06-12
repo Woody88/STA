@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150610034919) do
+ActiveRecord::Schema.define(version: 20150612221012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,8 +51,12 @@ ActiveRecord::Schema.define(version: 20150610034919) do
     t.datetime "finish_time"
     t.string   "scheduled"
     t.integer  "profile_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.text     "description"
+    t.string   "workflow_state"
+    t.string   "shift_type"
+    t.integer  "original_owner"
   end
 
   add_index "shifts", ["profile_id"], name: "index_shifts_on_profile_id", using: :btree

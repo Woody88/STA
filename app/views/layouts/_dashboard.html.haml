@@ -5,7 +5,7 @@
         .panel-body
           .profile-pic
             = image_tag avatar_url(current_user)
-          %h4 Welcome, #{profile.fname}
+          %h4 Welcome, #{profile.fname} #{profile.lname}
 
       .panel.panel-default
         .panel-heading Menu
@@ -14,7 +14,7 @@
             %li
               = link_to "News", news_feeds_path
             %li
-              %a{:href => "#"} Trade Center
+              %a#trade-center{:href => "#"} Trade Center
               %ul#trade.nav.nav-pills.nav-stacked
                 %li
                   = link_to "Pick Up" 
