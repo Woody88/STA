@@ -16,8 +16,14 @@
       .panel.panel-default.logo
         .panel-body
           .profile-pic
+<<<<<<< master
             %img{:src => "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&f=y"}
           %h4 Welcome, #{profile.fname}
+=======
+            = image_tag avatar_url(current_user)
+          %h4 
+            Welcome, #{profile.fname} #{profile.lname}
+>>>>>>> local
 
       .panel.panel-default
         .panel-heading Menu
@@ -26,7 +32,14 @@
             %li
               = link_to "News", news_feeds_path
             %li
+<<<<<<< master
               %a{:href => "#"} Trade Center
+=======
+              %%a#trade-center{:href => "#"} Trade Center
+              %ul#trade.nav.nav-pills.nav-stacked
+                %li
+                  = link_to "Pick Up" 
+>>>>>>> local
             %li
               %a{:href => "#"} Calendar
             %li
