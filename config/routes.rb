@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
   get 'posted-shifts' => 'trade_center#all_posted_shifts', as: 'posted_shifts'
-
+  get 'post_shift/:id' => 'trade_center#post_shift', as: 'post_shift'
+  patch 'submit_shift' => 'trade_center#submit_shift', as: 'submit_shift'
   get 'trade_center/pick_up_shift'
 
-  get 'shifts/index'
+  get 'shifts' => 'shifts#index', as: 'shifts'
 
   resources :bid_lines, only: [:index, :show]
 

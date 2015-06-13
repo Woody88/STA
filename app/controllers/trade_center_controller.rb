@@ -6,9 +6,13 @@ class TradeCenterController < ApplicationController
   end
 
   def post_shift
+  end
+
+  def submit_shift
+    @shift = Shift.find(params[:shift][:id])
     if !@shift.posted?
         flash[:notice] = 'Shift successfully Posted.' if @shift.post!
-        redirect_to shift_trade_board_path
+        redirect_to posted_shifts_path
     else
         flash[:alert] = 'Shift already on Trade Board!'
         redirect_to @shift

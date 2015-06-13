@@ -4,14 +4,30 @@
   .panel-body
     %table.table.table-striped
       %thead
-        %th Name
-        %th Date
-        %th Time
-        %th Position
-        %th Selection
-    - if @posted_shifts.empty?
-      %p No posted shifts at this time.
-    - else
+        %tr
+          %th Name
+          %th Date
+          %th Time
+          %th Position
+          %th Selection
       %tbody
-        - for posted_shift in @posted_shifts
-          %tr  
+        - if @posted_shifts.empty?
+          %p No posted shifts at this time.
+        - else
+          - for posted_shift in @posted_shifts
+            %tr< 
+              %td<
+                = "#{posted_shift.profile.fname} #{posted_shift.profile.lname}"
+              %td<
+                = posted_shift.date.to_s(:long)
+              %td<
+                = "#{posted_shift.start_time.to_s(:time)} - #{posted_shift.finish_time.to_s(:time)}"
+              %td<
+                = posted_shift.position
+              %td<
+                - if posted_shift.profile_id == profile.id 
+                  = link_to 'Edit'
+                  |
+                  = link_to 'Cancel'
+                - else
+                  = link_to 'Pick Up'
