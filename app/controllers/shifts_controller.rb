@@ -3,7 +3,7 @@ class ShiftsController < ApplicationController
   respond_to :json, :html
   def index
   	@user = current_user.profile
-  	@shifts = @user.shifts
+  	@shifts = @user.shifts.where(:scheduled => "IN")
 
   	respond_with(@shifts) 
   end

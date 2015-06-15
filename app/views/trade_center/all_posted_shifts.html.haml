@@ -12,7 +12,7 @@
           %th Selection
       %tbody
         - if @posted_shifts.empty?
-          %p No posted shifts at this time.
+          %p No shifts for trade at this time.
         - else
           - for posted_shift in @posted_shifts
             %tr< 
@@ -28,6 +28,6 @@
                 - if posted_shift.profile_id == profile.id 
                   = link_to 'Edit'
                   |
-                  = link_to 'Cancel'
+                  = link_to 'Cancel', cancel_shift_path(posted_shift), method: :post
                 - else
-                  = link_to 'Pick Up'
+                  = link_to 'Pick Up', pick_up_shift_path(posted_shift), method: :post

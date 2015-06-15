@@ -10,4 +10,18 @@ class Profile < ActiveRecord::Base
   		 errors.add(:bid_line, "This is not a valid bid line #")
   	end
   end
+
+  def available?(trade_shift)
+  	shift = self.shifts.where(date: trade_shift.date).first
+    	if !shift.nil?
+        	if shift.overlaps?(trade_shift)
+                return false
+            else
+                return true
+            end
+        else 
+            return true
+        end
+  end
+  
 end

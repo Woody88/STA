@@ -5,8 +5,7 @@
 ready = ->
 
   DateConvert = (d) ->
-    time = Date.parse(d.toString().replace(/T|Z/g, ' '))
-    time = moment(new Date(time)).format("HH:mm") 
+    time = moment(d).utcOffset(d).format("HH:mm")
 
     return time
 
@@ -40,7 +39,7 @@ ready = ->
             placement: 'bottom',
             html: true,
             animation: true,
-            content: 'Start: ' + event.start.format("HH:mm") + '<br />End: ' +  event.id +  event.end.format("HH:mm") + '<br />Description: ' + event.description + '<br /> <a id="post_shift" href= "post_shift/"class= "post" role ="button">Post Shift</a>
+            content: 'Start: ' + event.start.format("HH:mm") + '<br />End: ' + event.end.format("HH:mm") + '<br />Description: ' + event.description + '<br /> <a id="post_shift" href= "post_shift/"class= "post" role ="button">Post Shift</a> |
             <a href="google.com">Trade With Collegue</a>'
             template:'<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title" ></h3><div class="popover-content">hello</div></div> ' 
             container: 'body'
@@ -49,11 +48,7 @@ ready = ->
     eventDataTransform: (eventData, startParam) ->
       s = DateConvert(eventData.start)
       f = DateConvert(eventData.end)
-
-      if s == "00:00"
-        eventData.start = new Date(86400000);
-        eventData.end = new Date(86400000);
-
+      
       eventData
       
     eventDrop: (event, dayDelta, minuteDelta, allDay, revertFunc) ->
