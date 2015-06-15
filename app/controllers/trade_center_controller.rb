@@ -3,6 +3,7 @@ class TradeCenterController < ApplicationController
   before_action :set_shift, only: [:cancel_shift, :pick_up_shift]
   before_action :set_original_shift, only: [:pick_up_shift]
   before_action :set_dup_shift, only: [:post_shift]
+
   def all_posted_shifts
   	@posted_shifts = Shift.with_shift_trade_state.includes(:profile)
   end
@@ -14,6 +15,8 @@ class TradeCenterController < ApplicationController
     @shift = Shift.find(params[:shift][:original_id])
     start = Time.parse(params[:shift][:start_time])
     finish = Time.parse(params[:shift][:finish_time])
+
+    #Needs Refactoring as well place in a method
     @dup_shift = @shift.dup
     temp_start = @dup_shift.start_time.change(hour: start.hour, min: start.min)
     temp_finish = @dup_shift.finish_time.change(hour: finish.hour, min: finish.min)
@@ -36,11 +39,15 @@ class TradeCenterController < ApplicationController
     end
   end
 
-  def pick_up_shift
-     if profile.available?(@shift)
+  def pick_up_shift  # Needs major refactoring but will concentrate on it later need to see it work first!
 
-        #Needs Major refactoring but will concentrate on it later need to see it work first!
-        if !@shift.eql?(@original_shift)
+    split = false
+    if profile.available?(@shift)
+
+        # If @shift does not equal to @original_shift than shift is split
+        # else shift is similar swap record's profile_id 
+        if !(@shift.start_time.eql?(@original_shift.start_time) && @shift.finish_time.eql?(@original_shift.finish_time))
+          split = true
           if !@original_shift.start_time.eql?(@shift.start_time)
             temp = @original_shift.finish_time.change(hour: @shift.start_time.hour, min: @shift.start_time.min)
             @original_shift.finish_time = temp
@@ -49,18 +56,31 @@ class TradeCenterController < ApplicationController
             temp = @original_shift.start_time.change(hour: @shift.finish_time.hour, min: @shift.finish_time.min)
             @original_shift.start_time = temp
           end
-          
-        end
+           @shift.profile_id = profile.id
 
-        @shift.profile_id = profile.id
+        else
+          @original_shift.profile_id = profile.id
+          @shift.destroy
+        end
         
-        if @shift.save && @original_shift.save && @shift.sold! && @original_shift.sold!
+        if split
+          if @shift.save && @original_shift.save && @shift.sold! && @original_shift.sold!
             flash[:notice] = 'Shift successfully traded.' 
             redirect_to calendar_path
-        else
+          else
             flash[:alert] = "Shift Could not be Traded"
-             redirect_to posted_shifts_path
+            redirect_to posted_shifts_path
+          end
+        else 
+          if @original_shift.save && @original_shift.sold!
+            flash[:notice] = 'Shift successfully traded.' 
+            redirect_to calendar_path
+          else
+            flash[:alert] = "Shift Could not be Traded"
+            redirect_to posted_shifts_path
+          end
         end
+
     else
         flash[:alert] = "#{current_user.email} are already working that day."
         redirect_to posted_shifts_path
