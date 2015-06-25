@@ -7,6 +7,8 @@ class TradeCenterController < ApplicationController
   respond_to :html, :json, :js
   def all_posted_shifts
   	@posted_shifts = ShiftForTrade.all
+
+    render :template => "trade_center/shift_for_trade/all_posted_shifts"
   end
 
 
@@ -35,10 +37,13 @@ class TradeCenterController < ApplicationController
     Shift.transaction do
       @date_available.each(&:save!)
     end
+
+    redirect_to availability_path
   end
 
   
   def post_shift
+     render :template => "trade_center/shift_for_trade/post_shift"
   end
 
   def submit_shift
