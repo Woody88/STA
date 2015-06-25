@@ -8,14 +8,14 @@ class ApplicationController < ActionController::Base
 
 
   def profile
-    if current_user
-      current_user.profile
+    if current_employee
+      current_employee.profile
     end
   end
 
 
     def after_sign_in_path_for(resource)
-      news_feeds_path
+      calendar_path
     end
 
     protected

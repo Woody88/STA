@@ -4,21 +4,23 @@
 
 ready =  -> 
 	$('button#enable_bidline').click ->
-		if $('.enable_bidline_text').text() == 'Enable'
+		BidLineButton = $('.enable_bidline_text')
+		BidLineInput = $('#employee_profile_attributes_bid_line')
+
+		if BidLineButton.text() == 'Enable'
 			isGood = confirm("Warning: If you enable this field and change your line number, 
 							all your previous shifts will be deleted! New line number will generate new shifts on calendar. 
 							\n\n Do you want to enable this field?")
 		if isGood
-			if $('.enable_bidline_text').text() == 'Enable'
-		    	text = 'Disable'
-		    	value = false
+			if BidLineButton.text() == 'Enable'
+		    	BidLineButton.text 'Disable'
+		    	BidLineInput.removeAttr('disabled')
 		else
-		    text = 'Enable'
-		    value = true
+		    BidLineButton.text 'Enable'
+		    BidLineInput.attr('disabled', 'disabled')
 
-		$('.enable_bidline_text').text text
+		
 
-		$('#user_profile_attributes_bid_line').prop 'disabled', value
 
 		
 $(document).ready(ready) 

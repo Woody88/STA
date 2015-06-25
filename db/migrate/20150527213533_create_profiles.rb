@@ -4,7 +4,7 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :fname
       t.string :lname
       t.integer :bid_line
-      t.references :user, index: true, foreign_key: true
+      t.references :employee, index: true, foreign_key: true
       t.integer :emp_num
 
       t.timestamps null: false

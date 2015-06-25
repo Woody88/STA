@@ -1,0 +1,15 @@
+= simple_form_for(@dup, :url => submit_shift_path, 
+                  html: { class: 'form-horizontal'},
+ 				  wrapper: :horizontal_form,
+  				  wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean }) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :position
+    = f.input :start_time, as: :string, wrapper: :time_wrapper, placeholder: 'e.g: #{Time.now}', input_html: {:value => f.object.start_time.to_s(:time) }
+    = f.input :finish_time, as: :string, wrapper: :time_wrapper, placeholder: 'e.g: #{Time.now}', input_html: {:value => f.object.finish_time.to_s(:time) }
+    = f.input :description
+    = f.input :original_id, as: :hidden, input_html: { :value => "#{@shift.id}" }
+
+  .form-actions
+    = f.button :submit, value: "Post Shift"

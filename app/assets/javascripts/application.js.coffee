@@ -12,7 +12,7 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require jquery.ui.all
+#= require jquery.ui.dialog
 #= require moment
 #= require fullcalendar
 #= require bootstrap-sprockets

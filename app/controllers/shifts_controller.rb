@@ -1,7 +1,16 @@
 class ShiftsController < ApplicationController
-  respond_to :json
+  before_action :authenticate_employee!
+  respond_to :json, :html
   def index
-  	@user = current_user.profile
-  	@shifts = @user.shifts 
+  	@user = current_employee.profile
+  	@shifts = @user.shifts.where(:scheduled => "IN", :type => nil)
+
+  	respond_with(@shifts) 
+  end
+
+  def show
+  	@user = current_employee.profile
+  	@shift = @user.shifts.where(:id => params[:id])
+  	respond_with(@shift)
   end
 end

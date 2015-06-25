@@ -1,4 +1,5 @@
 class ProfileAccountController < Devise::RegistrationsController
+  before_action :authenticate_employee!
   require 'pry'
   require 'calendar_setup'
 
@@ -10,7 +11,7 @@ class ProfileAccountController < Devise::RegistrationsController
   	end
 
   	def update
-      if params[:user][:profile_attributes][:bid_line].nil?
+      if params[:employee][:profile_attributes][:bid_line].nil?
         super
       else
         profile.shifts.destroy_all unless profile.shifts.nil?
@@ -18,7 +19,7 @@ class ProfileAccountController < Devise::RegistrationsController
         
         if resource.save
           start_date = BidLine.first.lines.symbolize_keys[:day_1].to_date
-          line_number = params[:user][:profile_attributes][:bid_line].to_s
+          line_number = params[:employee][:profile_attributes][:bid_line].to_s
           line = BidLine.where("lines->>'line_number' = ?", line_number).first.lines.deep_symbolize_keys!
           calendar = Calendar::Calendar.new(start_date, line, profile)
           calendar.build

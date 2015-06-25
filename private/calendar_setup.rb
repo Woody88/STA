@@ -11,8 +11,6 @@ class Hash
 end
 
 module Calendar
-    #require 'date'
-    #require 'active_support/all'
 
     class Calendar   
         def initialize (start_date, line, profile)
@@ -23,10 +21,6 @@ module Calendar
             @date_cycle = (start_date..(start_date + 3.month)).map {|date| date.strftime("%b-%d-%Y")}
             @days_length = @days.length - 1
             @loop_set = 0
-            #@day = 0
-            #@shifts = {}
-            # puts @days
-            # puts "Days length  = #{@days_length}"
         end
 
         def line
@@ -48,32 +42,25 @@ module Calendar
         end
 
         def build
-            
+            profile_shifts = Array.new
             @date_cycle.each do |date|
 
-                case 
+            case 
 
                 when @loop_set < @days_length   
-                    shift = @line[@days[@loop_set]].merge(:date => date) 
-                    #:profile_id => @profile.id
+                    shift = @line[@days[@loop_set]].merge(:date => date, :original_owner => @profile.id) 
                     shift[:start_time] = "#{shift[:date]} #{shift[:start_time]}"
                     shift[:finish_time] = "#{shift[:date]} #{shift[:finish_time]}"
-                    @profile.shifts.create(shift)
-                    #@shifts["day_#{@day}".to_sym] = shift
-                    #puts "in less than =  #{@loop_set}"
-                    #@day += 1
+                    profile_shifts << @profile.shifts.new(shift)
                     @loop_set += 1
                     
 
                 when @loop_set == @days_length
                     shift = @line[@days[@loop_set]].merge(:date => date)
-                    #:profile_id => @profile.id
                     shift[:start_time] = "#{shift[:date]} #{shift[:start_time]}"
                     shift[:finish_time] = "#{shift[:date]} #{shift[:finish_time]}"
-                    @profile.shifts.create(shift)
-                    #@shifts["day_#{@day}".to_sym] = shift
-                    #puts "in == #{@loop_set}"
-                    #@day += 1  
+                    profile_shifts << @profile.shifts.new(shift)
+                    #@profile.shifts.create(shift)
                     @loop_set = 0
                             
                 else
@@ -82,8 +69,12 @@ module Calendar
                     "Outside Range"
                 end
             end
-            #@shifts
+
+            Shift.transaction do
+                profile_shifts.each(&:save!) 
+            end
         end
+
     end
 end
 
