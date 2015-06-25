@@ -1,33 +1,34 @@
-.panel.panel-defautlt.calendar
-  .panel-heading
-    %h3 Trade Board
-  .panel-body
-    %table.table.table-striped
-      %thead
-        %tr
-          %th Name
-          %th Date
-          %th Time
-          %th Position
-          %th Selection
-      %tbody
-        - if @posted_shifts.empty?
-          %p No shifts for trade at this time.
-        - else
-          - for posted_shift in @posted_shifts
-            %tr< 
-              %td<
-                = "#{posted_shift.profile.fname} #{posted_shift.profile.lname}"
-              %td<
-                = posted_shift.date.to_s(:long)
-              %td<
-                = "#{posted_shift.start_time.to_s(:time)} - #{posted_shift.finish_time.to_s(:time)}"
-              %td<
-                = posted_shift.position
-              %td<
-                - if posted_shift.profile_id == profile.id 
-                  = link_to 'Edit'
-                  |
-                  = link_to 'Cancel', cancel_shift_path(posted_shift), method: :post
-                - else
-                  = link_to 'Pick Up', pick_up_shift_path(posted_shift), method: :post
+.col-md-6
+  .panel.panel-defautlt.calendar
+    .panel-heading
+      %h3 Trade Board
+    .panel-body
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Date
+            %th Time
+            %th Position
+            %th Selection
+        %tbody
+          - if @posted_shifts.empty?
+            %p No shifts for trade at this time.
+          - else
+            - for posted_shift in @posted_shifts
+              %tr< 
+                %td<
+                  = "#{posted_shift.profile.fname} #{posted_shift.profile.lname}"
+                %td<
+                  = posted_shift.date.to_s(:long)
+                %td<
+                  = "#{posted_shift.start_time.to_s(:time)} - #{posted_shift.finish_time.to_s(:time)}"
+                %td<
+                  = posted_shift.position
+                %td<
+                  - if posted_shift.profile_id == profile.id 
+                    = link_to 'Edit'
+                    |
+                    = link_to 'Cancel', cancel_shift_path(posted_shift), method: :post
+                  - else
+                    = link_to 'Pick Up', pick_up_shift_path(posted_shift), method: :post

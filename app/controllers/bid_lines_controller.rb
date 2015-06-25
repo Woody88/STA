@@ -1,5 +1,5 @@
 class BidLinesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_employee!
   respond_to :json, :html
   def index
   	@lines = BidLine.all

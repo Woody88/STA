@@ -1,16 +1,17 @@
-= link_to 'New Info', new_news_feed_path, class: 'btn btn-primary'
-- @news_feeds.each do |news_feed|
-  .panel.panel-default.dash-content
-    .panel-heading
-      %h3 
-        =news_feed.title
-      %span 
-        = news_feed.created_at.to_date.to_s(:long)
-    .panel-body
-      = simple_format(news_feed.body)
-    .panel-footer
-      = link_to 'Show', news_feed
-      = link_to 'Edit', edit_news_feed_path(news_feed)
-      = link_to 'Destroy', news_feed, :method => :delete, :data => { :confirm => 'Are you sure?' }
+.col-md-6
+  = link_to 'New Info', new_news_feed_path, class: 'btn btn-primary'
+  - @news_feeds.each do |news_feed|
+    .panel.panel-default.dash-content
+      .panel-heading
+        %h3 
+          =news_feed.title
+        %span 
+          = news_feed.created_at.to_date.to_s(:long)
+      .panel-body
+        = simple_format(news_feed.body)
+      .panel-footer
+        = link_to 'Show', news_feed
+        = link_to 'Edit', edit_news_feed_path(news_feed)
+        = link_to 'Destroy', news_feed, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
    

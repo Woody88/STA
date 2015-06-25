@@ -4,7 +4,7 @@
       .panel.panel-default.logo
         .panel-body
           .profile-pic
-            = image_tag avatar_url(current_user)
+            = image_tag avatar_url(current_employee)
           %h4 Welcome, #{profile.fname} #{profile.lname}
 
       .panel.panel-default
@@ -16,8 +16,11 @@
             %li
               %a#trade-center{:href => "#"} Trade Center
               %ul#trade.nav.nav-pills.nav-stacked
-                %li
+                %li{:style => "padding-left: 8px; padding-right: 8px;"}
                   = link_to "Pick Up", posted_shifts_path
+                %li{:style => "padding-left: 8px; padding-right: 8px;"}
+                  = link_to 'Availability', availability_path
+                
             %li
               = link_to "Calendar", calendar_path
             %li
@@ -25,6 +28,6 @@
             %li
               %a{:href => "http ://aircanada.ca"} Air Canada
     
-    .col-md-6
-      = yield
+    
+    = yield
         

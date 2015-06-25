@@ -1,0 +1,3 @@
+class AvailableEmp < Shift
+
+end 

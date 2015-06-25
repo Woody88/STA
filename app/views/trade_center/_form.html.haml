@@ -5,12 +5,10 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :position, readonly: true
-    = f.input :date, as: :string, input_html: {:value => f.object.date.to_s(:long) },readonly: true
+    = f.input :position
     = f.input :start_time, as: :string, wrapper: :time_wrapper, placeholder: 'e.g: #{Time.now}', input_html: {:value => f.object.start_time.to_s(:time) }
     = f.input :finish_time, as: :string, wrapper: :time_wrapper, placeholder: 'e.g: #{Time.now}', input_html: {:value => f.object.finish_time.to_s(:time) }
     = f.input :description
-    = f.input :scheduled, as: :hidden
     = f.input :original_id, as: :hidden, input_html: { :value => "#{@shift.id}" }
 
   .form-actions

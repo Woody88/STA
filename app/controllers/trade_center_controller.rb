@@ -1,13 +1,43 @@
 class TradeCenterController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_shift, only: [:cancel_shift, :pick_up_shift]
-  before_action :set_original_shift, only: [:pick_up_shift]
+  before_action :authenticate_employee!
+  before_action :set_shift, only: [:pick_up_shift, :cancel_shift]
+  before_action :set_original_shift, only: [:pick_up_shift, :cancel_shift,]
   before_action :set_dup_shift, only: [:post_shift]
 
+  respond_to :html, :json, :js
   def all_posted_shifts
-  	@posted_shifts = Shift.with_shift_trade_state.includes(:profile)
+  	@posted_shifts = ShiftForTrade.all
   end
 
+
+  def all_availability
+  end
+
+  def available_on_date
+    #@available = Shift.where(:date => params[:date]) 
+    @users = Shift.where(:date => params[:date], :available => true)
+    respond_with(@users)
+  end
+
+  def user_availability
+  end
+
+  def set_user_availability
+    @date_available = Array.new
+    @user = current_employee.profile
+    @availability = params[:availability][:dates].split(",")
+    @availability.each do |date|
+        shift = @user.shifts.where(:date => date).first
+        shift.available = true
+        @date_available << shift
+    end
+
+    Shift.transaction do
+      @date_available.each(&:save!)
+    end
+  end
+
+  
   def post_shift
   end
 
@@ -15,56 +45,50 @@ class TradeCenterController < ApplicationController
     @shift = Shift.find(params[:shift][:original_id])
     start = Time.parse(params[:shift][:start_time])
     finish = Time.parse(params[:shift][:finish_time])
+    
+    dup_shift = set_shift_for_post(@shift, start, finish) 
 
-    #Needs Refactoring as well place in a method
-    @dup_shift = @shift.dup
-    temp_start = @dup_shift.start_time.change(hour: start.hour, min: start.min)
-    temp_finish = @dup_shift.finish_time.change(hour: finish.hour, min: finish.min)
-    @dup_shift.start_time = temp_start
-    @dup_shift.finish_time = temp_finish
-    @dup_shift.profile_id = profile.id
-    @dup_shift.trade_id = @shift.id
-
-    if !@shift.posted?
-      if @dup_shift.save 
-        flash[:notice] = 'Shift successfully Posted.' if @shift.post! &&  @dup_shift.shift_trade!
-        redirect_to posted_shifts_path
-      else
-        flash[:alert] = 'Could not post your shift on Trade Board!'
-        redirect_to @shift
-      end
-    else
-        flash[:alert] = 'Shift already on Trade Board!'
-        redirect_to post_shift_path(@shift)
+    if (dup_shift.is_partial?(@shift))
+      dup_shift.partial = true
     end
+      
+    post_shift = ShiftForTrade.new(dup_shift.attributes.except("type"))
+
+    if post_shift.save
+      flash[:notice] = 'Shift successfully Posted.' if @shift.post!
+      redirect_to posted_shifts_path
+    else
+      flash[:alert] = 'Could not post your shift on Trade Board!'
+      redirect_to @shift
+    end
+
   end
 
   def pick_up_shift  # Needs major refactoring but will concentrate on it later need to see it work first!
-
-    split = false
-    if profile.available?(@shift)
-
+    @posted_shift = @shift
+    if profile.available?(@posted_shift)
         # If @shift does not equal to @original_shift than shift is split
         # else shift is similar swap record's profile_id 
-        if !(@shift.start_time.eql?(@original_shift.start_time) && @shift.finish_time.eql?(@original_shift.finish_time))
-          split = true
-          if !@original_shift.start_time.eql?(@shift.start_time)
-            temp = @original_shift.finish_time.change(hour: @shift.start_time.hour, min: @shift.start_time.min)
+        if @posted_shift.partial
+          if !@original_shift.start_time.eql?(@posted_shift.start_time)
+            temp = @original_shift.finish_time.change(hour: @posted_shift.start_time.hour, min: @posted_shift.start_time.min)
             @original_shift.finish_time = temp
 
-          elsif !@original_shift.finish_time.eql?(@shift.finish_time)
-            temp = @original_shift.start_time.change(hour: @shift.finish_time.hour, min: @shift.finish_time.min)
+          elsif !@original_shift.finish_time.eql?(@posted_shift.finish_time)
+            temp = @original_shift.start_time.change(hour: @posted_shift.finish_time.hour, min: @posted_shift.finish_time.min)
             @original_shift.start_time = temp
           end
-           @shift.profile_id = profile.id
+          
+          @posted_shift.profile_id = profile.id
+          @posted_shift.type = nil
 
         else
           @original_shift.profile_id = profile.id
-          @shift.destroy
+          @posted_shift.destroy
         end
         
-        if split
-          if @shift.save && @original_shift.save && @shift.sold! && @original_shift.sold!
+        if @posted_shift.partial
+          if @posted_shift.save && @original_shift.save
             flash[:notice] = 'Shift successfully traded.' 
             redirect_to calendar_path
           else
@@ -72,7 +96,7 @@ class TradeCenterController < ApplicationController
             redirect_to posted_shifts_path
           end
         else 
-          if @original_shift.save && @original_shift.sold!
+          if @original_shift.save
             flash[:notice] = 'Shift successfully traded.' 
             redirect_to calendar_path
           else
@@ -90,15 +114,15 @@ class TradeCenterController < ApplicationController
 
 
   def cancel_shift
-     @shift = Shift.find(params[:id])
-     flash[:notice] = 'Shift successfully removed from board.' if @shift.destroy
+     flash[:notice] = 'Shift successfully removed from board.' if @shift.destroy && @original_shift.unpost! 
      redirect_to posted_shifts_path
   end
+
 
   private
 
   def post_shift_params
-    params.require(:shift).permit(:position, :date, :start_time, :finish_time, :description, :workflow_state, :scheduled, :profile_id, :trade_id)
+    params.require(:shift).permit(:position, :date, :start_time, :finish_time, :description, :scheduled, :profile_id, :post_id, :available)
   end
 
   def set_shift
@@ -106,11 +130,25 @@ class TradeCenterController < ApplicationController
   end
 
   def set_original_shift
-    @original_shift = Shift.find(@shift.trade_id)
+    @original_shift = Shift.find(@shift.post_id)
   end
 
   def set_dup_shift
     @shift = Shift.find(params[:id])
     @dup = @shift.dup
   end
+
+  # Maybe put in different
+  def set_shift_for_post(shift, start, finish)
+      dup = shift.dup
+      temp_start = dup.start_time.change(hour: start.hour, min: start.min)
+      temp_finish = dup.finish_time.change(hour: finish.hour, min: finish.min)
+      dup.start_time = temp_start
+      dup.finish_time = temp_finish
+      dup.post_id = shift.id
+      dup.profile_id = profile.id
+
+      dup
+  end
+
 end

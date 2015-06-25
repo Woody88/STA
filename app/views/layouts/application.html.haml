@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
     %title
       =yield(:title) 
 
@@ -10,7 +10,7 @@
     = csrf_meta_tags
   %body
     = render 'layouts/navbar'
-    - if user_signed_in?
+    - if employee_signed_in?
       = render 'layouts/dashboard'
     - else
       %div.content

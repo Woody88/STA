@@ -9,7 +9,7 @@ ready = ->
 
     return time
 
-  $('#calendar').fullCalendar
+  $('.user_calendar').fullCalendar
     
     # Calendar View 
     editable: true,
@@ -25,14 +25,21 @@ ready = ->
     eventLimit: true,
     timeFormat: 'HH:mm'
     dragOpacity: "0.5" 
+  
 
     # Events 
     events: "/shifts.json"
 
 
-    eventRender: (event, element, startParam) -> 
+    eventRender: (event, element, view) -> 
+
+
         $('.fc-container').css('font-size', '1.8em !important')
         posted_shift_path = "post_shift/" + event.id.toString()
+
+        if (event.status == "posted")
+          element.css('background-color', 'red')
+         
 
         element.popover
             title: event.title,
