@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 
   resources :bid_lines, only: [:index, :show]
 
-  get 'calendar' => 'calendar#index', as: 'calendar'
 
   resources :news_feeds
 
@@ -36,6 +35,9 @@ Rails.application.routes.draw do
     end
   end
   
+  authenticated :employee do
+    root 'calendar#index', as: 'calendar'
+  end
 
   root 'staticpages#index'
 

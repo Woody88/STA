@@ -43,15 +43,106 @@
   background: rgba(211,211,211,0.4)
 
 html, body
-  height: 100%
-  background-size: 100% auto
   background-color: #e1e8ed
+ 
 
-div.content
-  padding-top: 52px
+
 
 .container.registration
   margin: 10px auto
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+
+#wrapper 
+  padding-left: 0
+  -webkit-transition: all 0.5s ease
+  -moz-transition: all 0.5s ease
+  -o-transition: all 0.5s ease
+  transition: all 0.5s ease
+
+
+#wrapper.toggled 
+  padding-left: 250px
+
+
+#sidebar-wrapper 
+  z-index: 1000
+  position: fixed
+  left: 250px
+  width: 0
+  height: 100%
+  margin-left: -250px
+  overflow-y: auto
+  -webkit-transition: all 0.5s ease
+  -moz-transition: all 0.5s ease
+  -o-transition: all 0.5s ease
+  transition: all 0.5s ease
+
+
+#wrapper.toggled #sidebar-wrapper 
+  width: 250px
+
+
+#page-content-wrapper 
+  width: 100%
+  position: absolute
+  padding: 20px
+  paddint-top: 60px
+
+
+#wrapper.toggled #page-content-wrapper 
+  position: absolute
+  margin-right: -250px
+
+
+/* Sidebar Styles */
+
+.sidebar-nav 
+  position: absolute
+  top: 0
+  width: 250px
+  margin: 0
+  padding: 0
+  font-size: 13px
+  background-color: #4c4a49
+  min-height: 100%
+  padding-top: 60px
+  font-weight: 600
+
+
+@media(min-width:768px) 
+  #wrapper 
+    padding-left: 250px
+    
+
+  #wrapper.toggled 
+    padding-left: 0
+  
+
+  #sidebar-wrapper 
+    width: 250px
+  
+
+  #wrapper.toggled #sidebar-wrapper 
+    width: 0
+  
+
+  #page-content-wrapper 
+    padding: 20px
+    padding-top: 60px
+    position: relative
+  
+
+  #wrapper.toggled #page-content-wrapper 
+    position: relative
+    margin-right: 0
+    
+
 
 //////////////DASHBORD LAYOUT///////////////////////////////
 ul#trade
@@ -59,3 +150,47 @@ ul#trade
 
 #trade li:first-child 
   padding-top: 5px
+
+.avatar30
+  max-width: 30px !important
+  margin-top: -5px
+  border-radius: 80%
+  border: 2px solid #FAFAFA
+
+.avatar40
+  max-width: 40px !important
+  border: 2px solid #FAFAFA
+
+
+
+header.sidebar-header
+  margin-top: 15px
+  padding: 10px
+
+.profile-avatar
+  margin: 0 2px
+
+.profile-body
+  position: relative
+  top: 4px
+  margin: 0 2px
+  text-align: center
+
+.profile-name
+  color: #fff
+
+.inner-inline
+  display: inline-block
+
+.links
+  color: #AAA
+
+.links a:hover
+  color: #fff
+  text-decoration: none
+  background-color: #4c4a49
+
+.links:hover
+  color: #fff
+
+

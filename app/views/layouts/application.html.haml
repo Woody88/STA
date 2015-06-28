@@ -9,10 +9,10 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = render 'layouts/navbar'
-    - if employee_signed_in?
-      = render 'layouts/dashboard'
-    - else
-      %div.content
+    #wrapper
+      = render 'layouts/navbar'
+      - if employee_signed_in?
+        = render 'layouts/dashboard'
+      #page-content-wrapper
         = yield
 
