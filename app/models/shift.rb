@@ -2,14 +2,15 @@ class Shift < ActiveRecord::Base
   MIN_TIME = "00:00"
   MAX_TIME = "23:59" 
   belongs_to :profile
-  has_many :for_trades, class_name: "ShiftForTrade", :foreign_key => "trade_id"
+  has_many :for_trades, class_name: "ShiftForTrade", :foreign_key => "post_id"
+  has_many :trade_with_collegues, class_name: "CollegueTrade", :foreign_key => "post_id"
 
   attr_accessor :original_id # User to insert original shift record id 
 
   # include Workflow
   #   workflow do
   #       state :new do
-  #           event :post, :transitions_to => :posted
+  #            event :post, :transitions_to => :posted
   #           event :split_shift, :transitions_to => :partial 
   #           event :trade_request, :transitions_to => :pending_request
   #           event :shift_trade, :transitions_to => :shift_trade

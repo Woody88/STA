@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625060232) do
+ActiveRecord::Schema.define(version: 20150627071528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150625060232) do
     t.string   "period_available", default: "f"
     t.string   "type"
     t.integer  "post_id",          default: 0
+    t.integer  "collegue_id",      default: 0
   end
 
   add_index "shifts", ["profile_id"], name: "index_shifts_on_profile_id", using: :btree

@@ -46,8 +46,8 @@ ready = ->
             placement: 'bottom',
             html: true,
             animation: true,
-            content: 'Start: ' + event.start.format("HH:mm") + '<br />End: ' + event.end.format("HH:mm") + '<br />Description: ' + event.description + '<br /> <a id="post_shift" href= "post_shift/"class= "post" role ="button">Post Shift</a> |
-            <a href="google.com">Trade With Collegue</a>'
+            content: 'Start: ' + event.start.format("HH:mm") + '<br />End: ' + event.end.format("HH:mm") + '<br />Description: ' + event.description + '<br /> <a id="post_shift" href= "post_shift/" class= "post" role ="button">Post Shift</a> |
+            <a href="trade_with_collegue/" class="collegue_trade">Trade With Collegue</a>'
             template:'<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title" ></h3><div class="popover-content">hello</div></div> ' 
             container: 'body'
 
@@ -67,6 +67,9 @@ ready = ->
     eventClick: (calEvent, jsEvent, view) -> 
         $('.post').on "click", -> 
           $(this).prop('href', "/post_shift/" + calEvent.id)
+
+        $('.collegue_trade').on "click", ->
+          $(this).prop 'href', 'trade_with_collegue/' + calEvent.id
 
 
 updateEvent = (the_event) ->

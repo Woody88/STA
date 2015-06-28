@@ -2,17 +2,23 @@ class TradeCenterController < ApplicationController
   before_action :authenticate_employee!
   before_action :set_shift, only: [:pick_up_shift, :cancel_shift]
   before_action :set_original_shift, only: [:pick_up_shift, :cancel_shift,]
-  before_action :set_dup_shift, only: [:post_shift]
+  before_action :set_dup_shift, only: [:post_shift, :trade_with_collegue]
 
   respond_to :html, :json, :js
   def all_posted_shifts
   	@posted_shifts = ShiftForTrade.all
-
-    render :template => "trade_center/shift_for_trade/all_posted_shifts"
   end
 
 
   def all_availability
+  end
+
+  def trade_requests
+    @trade_requests = profile.trade_requests
+  end
+
+  def pending_requests
+    @pending_requests = profile.pending_requests
   end
 
   def available_on_date
@@ -43,7 +49,6 @@ class TradeCenterController < ApplicationController
 
   
   def post_shift
-     render :template => "trade_center/shift_for_trade/post_shift"
   end
 
   def submit_shift
@@ -56,8 +61,13 @@ class TradeCenterController < ApplicationController
     if (dup_shift.is_partial?(@shift))
       dup_shift.partial = true
     end
-      
-    post_shift = ShiftForTrade.new(dup_shift.attributes.except("type"))
+    
+    if params[:shift][:collegue_id]
+      dup_shift.collegue_id = params[:shift][:collegue_id]
+      post_shift = CollegueTrade.new(dup_shift.attributes.except("type"))
+    else
+      post_shift = ShiftForTrade.new(dup_shift.attributes.except("type"))
+    end
 
     if post_shift.save
       flash[:notice] = 'Shift successfully Posted.' if @shift.post!
@@ -117,6 +127,8 @@ class TradeCenterController < ApplicationController
     
   end
 
+  def trade_with_collegue
+  end
 
   def cancel_shift
      flash[:notice] = 'Shift successfully removed from board.' if @shift.destroy && @original_shift.unpost! 
@@ -127,7 +139,7 @@ class TradeCenterController < ApplicationController
   private
 
   def post_shift_params
-    params.require(:shift).permit(:position, :date, :start_time, :finish_time, :description, :scheduled, :profile_id, :post_id, :available)
+    params.require(:shift).permit(:position, :date, :start_time, :finish_time, :description, :scheduled, :profile_id, :post_id, :available, :collegue_id)
   end
 
   def set_shift
