@@ -30,6 +30,9 @@
 
             %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
               %li
+                %a{:href => "#"}
+                  Profile Setting
+              %li.btn-xs.btn-danger.btn-block
                 = link_to signout_path, {:method => :delete} do
                   %span.glyphicon.glyphicon-log-out
                   Logout
