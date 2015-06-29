@@ -10,11 +10,12 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require_tree .
  *= require fullcalendar
+
+ *@import jquery.ui.dialog
  */
-@import jquery.ui.dialog
 @import "bootstrap-sprockets"
 @import "bootstrap"
 @import url("http://fonts.googleapis.com/css?family=Lato:300,400,400italic,900italic")
@@ -91,8 +92,7 @@ html, body
 #page-content-wrapper 
   width: 100%
   position: absolute
-  padding: 20px
-  paddint-top: 60px
+  padding: 60px 0 0 20px
 
 
 #wrapper.toggled #page-content-wrapper 
@@ -133,8 +133,7 @@ html, body
   
 
   #page-content-wrapper 
-    padding: 20px
-    padding-top: 60px
+    padding: 60px 0 0 20px
     position: relative
   
 
@@ -161,6 +160,11 @@ ul#trade
   max-width: 40px !important
   border: 2px solid #FAFAFA
 
+.avatar50
+  max-width: 60px !important
+  max-height: 60px !important
+  border: 2px solid #000
+  margin: 5px 0 0 0 
 
 
 header.sidebar-header
@@ -193,4 +197,5 @@ header.sidebar-header
 .links:hover
   color: #fff
 
-
+p.post-context
+  margin-top: 5px

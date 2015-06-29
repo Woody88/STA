@@ -1,38 +1,69 @@
+/ ---Start of Schedule Tak
 .row
-  .col-md-9
+  .col-md-8
     .panel.panel-default
       .panel-body.text-center
         %h1 You are Off today!
       .panel-footer
         Schedule Task 
-
+/ ---End 
 .row
-  .col-xs-12.col-sm-5{:class => "[ ]"}
-    .panel-group
-      .panel.panel-default
-        .panel.heading.no-bottom-line
-          .panel-profile.inner-inline
-            = image_tag "https://lh3.googleusercontent.com/-CxXg7_7ylq4/AAAAAAAAAAI/AAAAAAAAAQ8/LhCIKQC5Aq4/s46-c-k-no/photo.jpg", class: "inner-inline"
-            .panel-name.inner-inline
+  .col-md-8
+    .panel.panel-default
+      .panel-heading.text-center
+        Recent Posts
+      %ul.list-group
+        %li.list-group-item
+          .post-profile
+            = image_tag "http://static.nfl.com/static/content/public/static/img/fantasy/transparent/200x200/WOO661523.png?01AD=3n6mqKw_qL00dpnfbGHt_psO6gNStPFmrhrEnOUuVho8CHdcw_9g8Ow&01RI=0D206B0E41C6CD5&01NA=", class: "avatar50 inner-inline"
+            .post-name.inner-inline
               Robert McIntosh
               %p
                 %span Shared publicly
                 - 
                 %span Jun 27, 2014
-          %span.dropdown.pull-right
-            %span.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
-              %span.glyphicon.glyphicon-chevron-down{:class => "[ ]"}
-            %ul.dropdown-menu{:role => "menu"}
-              %li{:role => "presentation"}
-                %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Action
-              %li{:role => "presentation"}
-                %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Another action
-              %li{:role => "presentation"}
-                %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Something else here
-              %li.divider{:role => "presentation"}
-              %li{:role => "presentation"}
-                %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Separated link
-          .clearfix
-        .panel-body
-          hello
-     
+            %span.dropdown.pull-right
+              %span.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+                %span.glyphicon.glyphicon-chevron-down{:class => "[ ]"}
+              %ul.dropdown-menu{:role => "menu"}
+                %li{:role => "presentation"}
+                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Action
+                %li{:role => "presentation"}
+                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Another action
+                %li{:role => "presentation"}
+                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Something else here
+                %li.divider{:role => "presentation"}
+                %li{:role => "presentation"}
+                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Separated link
+          %p.post-context<>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sodales, odio at rhoncus dictum, turpis nisi hendrerit felis, quis gravida eros nunc at metus. Vestibulum rutrum dignissim hendrerit. Nam molestie enim ut congue congue. Sed est ipsum, faucibus vitae tellus id, dignissim mollis turpis. Nam facilisis, enim non elementum tempor, augue diam cursus nulla, in fermentum ligula neque id mi.
+        %li.list-group-item
+          .post-profile
+            = image_tag "http://vignette4.wikia.nocookie.net/heroes/images/f/fc/AndoMasahashi.jpg/revision/latest?cb=20110531070605", class: "avatar50 inner-inline"
+            .post-name.inner-inline
+              Ando Masahashi
+              %p
+                %span Shared publicly
+                - 
+                %span Jun 27, 2014
+            %span.dropdown.pull-right
+              %span.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+                %span.glyphicon.glyphicon-chevron-down{:class => "[ ]"}
+              %ul.dropdown-menu{:role => "menu"}
+                %li{:role => "presentation"}
+                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Action
+                %li{:role => "presentation"}
+                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Another action
+                %li{:role => "presentation"}
+                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Something else here
+                %li.divider{:role => "presentation"}
+                %li{:role => "presentation"}
+                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Separated link
+          %p.post-context<>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sodales, odio at rhoncus dictum, turpis nisi hendrerit felis, quis gravida eros nunc at metus. Vestibulum rutrum dignissim hendrerit. Nam molestie enim ut congue congue. Sed est ipsum, faucibus vitae tellus id, dignissim mollis turpis. Nam facilisis, enim non elementum tempor, augue diam cursus nulla, in fermentum ligula neque id mi.
+  .col-md-4
+    .panel.panel-default
+      .panel-heading<>
+        My Calendar
+      .panel-body
+        .user_calendar

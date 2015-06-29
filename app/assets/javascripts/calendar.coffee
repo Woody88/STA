@@ -19,13 +19,13 @@ ready = ->
       center: 'title',
       right: 'month,agendaWeek,agendaDay'
     defaultView: 'month',
-    height: 500,
-    aspectRatio: 2
+    height: 400,
+    aspectRatio: 1
     slotMinutes: 30,
     eventLimit: true,
     timeFormat: 'HH:mm'
     dragOpacity: "0.5" 
-  
+    
 
     # Events 
     events: "/shifts.json"
