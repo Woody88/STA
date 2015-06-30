@@ -1,14 +1,39 @@
 / ---Start of Schedule Tak
 .row
-  .col-md-8
+  .col-md-7
     .panel.panel-default
       .panel-body.text-center
         %h1 You are Off today!
       .panel-footer
         Schedule Task 
+  .col-md-5 
+    .panel.panel-default
+      .panel-heading
+        Trade Center Information
+      .panel-body
+        %p 
+          Shift For Trade:
+          %strong 30
+        %p 
+          Available Collegue For Today: 
+          %strong 10
+        %p 
+          Pending Request:
+          %strong 0
 / ---End 
+
+
+
 .row
-  .col-md-8
+  .col-lg-5.col-lg-push-7.col-md-5.col-md-push-0.col-xs-12
+    .panel.panel-default
+      .panel-heading<>
+        %a.calendar-modal{ :role => "button", :data => {:toggle => "modal", :target => "#availability_modal"}}
+          My Calendar
+      .panel-body
+        .user_calendar-modal
+
+  .col-lg-7.col-lg-pull-5.col-md-7.col-md-pull-0.col-xs-12.col.xs-push-12
     .panel.panel-default
       .panel-heading.text-center
         Recent Posts
@@ -61,9 +86,16 @@
                   %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Separated link
           %p.post-context<>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sodales, odio at rhoncus dictum, turpis nisi hendrerit felis, quis gravida eros nunc at metus. Vestibulum rutrum dignissim hendrerit. Nam molestie enim ut congue congue. Sed est ipsum, faucibus vitae tellus id, dignissim mollis turpis. Nam facilisis, enim non elementum tempor, augue diam cursus nulla, in fermentum ligula neque id mi.
-  .col-md-4
-    .panel.panel-default
-      .panel-heading<>
-        My Calendar
-      .panel-body
-        .user_calendar
+  
+
+#availability_modal.modal.fade{ :tabindex => "-1", :role => "dialog", :aria => {:labelledby => "availability_modal", :hidden => true} }
+  .modal-dialog
+    .modal-content
+      .modal-header 
+        %button.close{ :type => "button",:data => { :dimiss => "modal"}, :aria => { :hidden => "true"}}><
+          = "&times;".html_safe 
+        %h4.modal-title#modalTitle My Calendar
+      .modal-body
+        .user_calendar-modal
+      .modal-footer
+        %button.btn.btn-default{ :data => { :dismiss => "modal"}} Close

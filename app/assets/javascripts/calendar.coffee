@@ -9,7 +9,7 @@ ready = ->
 
     return time
 
-  $('.user_calendar').fullCalendar
+  $('.user_calendar-modal').fullCalendar
     
     # Calendar View 
     editable: true,
@@ -79,6 +79,11 @@ updateEvent = (the_event) ->
       starts_at: "" + the_event.start,
       ends_at: "" + the_event.end,
       description: the_event.description
+
+$('#availability_modal').on 'shown.bs.modal', -> 
+  $(this).attr("z-index", "1000")
+  $(".user_calendar-modal").attr("z-index", "1100")
+  $(".user_calendar-modal").fullCalendar('render')
 
 
 $(document).ready(ready)
