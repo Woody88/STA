@@ -3,6 +3,14 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 ready = ->
+  refresh_posts = ->
+    $.ajax
+      url: 'posts'
+      success: (data) ->
+        console.log(data)
+      complete: ->
+        # Schedule the next request when the current one's complete
+        setTimeout refresh_posts, 4500
 
   DateConvert = (d) ->
     time = moment(d).utcOffset(d).format("HH:mm")
@@ -72,13 +80,15 @@ ready = ->
           $(this).prop 'href', 'trade_with_collegue/' + calEvent.id
 
 
-updateEvent = (the_event) ->
-  $.update "/events/" + the_event.id,
-    event:
-      title: the_event.title,
-      starts_at: "" + the_event.start,
-      ends_at: "" + the_event.end,
-      description: the_event.description
+    updateEvent = (the_event) ->
+      $.update "/events/" + the_event.id,
+        event:
+          title: the_event.title,
+          starts_at: "" + the_event.start,
+          ends_at: "" + the_event.end,
+          description: the_event.description
+
+  refresh_posts()
 
 
 $(document).ready(ready)

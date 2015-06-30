@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
 
   get 'posted-shifts' => 'trade_center#all_posted_shifts', as: 'posted_shifts'
   get 'availability' => 'trade_center#all_availability', as: 'availability'

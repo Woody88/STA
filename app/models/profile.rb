@@ -2,6 +2,7 @@ class Profile < ActiveRecord::Base
   belongs_to :employee
   has_many :shifts, dependent: :destroy
   has_many :date_availables
+  has_many :posts
   has_many :posted_shifts, class_name: "ShiftForTrade"
   has_many :trade_requests, class_name: "CollegueTrade", foreign_key: "collegue_id"
   has_many :pending_requests, class_name: "CollegueTrade"
