@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
 
   resources :news_feeds
-
+  resources :posts
   devise_for :employees, :controllers => { :registrations => 'profile_account'}
 
   devise_scope :employee do
