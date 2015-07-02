@@ -3,6 +3,17 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 ready = ->
+  $("input[name=commit]").submit (event), ->
+    event.preventDefault()
+
+  refresh_posts = ->
+    $.ajax
+      type: 'GET'
+      url: 'posts'
+      success: (data) ->
+      complete: ->
+        # Schedule the next request when the current one's complete
+        setTimeout refresh_posts, 60000
 
   DateConvert = (d) ->
     time = moment(d).utcOffset(d).format("HH:mm")
@@ -72,13 +83,15 @@ ready = ->
           $(this).prop 'href', 'trade_with_collegue/' + calEvent.id
 
 
-updateEvent = (the_event) ->
-  $.update "/events/" + the_event.id,
-    event:
-      title: the_event.title,
-      starts_at: "" + the_event.start,
-      ends_at: "" + the_event.end,
-      description: the_event.description
+    updateEvent = (the_event) ->
+      $.update "/events/" + the_event.id,
+        event:
+          title: the_event.title,
+          starts_at: "" + the_event.start,
+          ends_at: "" + the_event.end,
+          description: the_event.description
+
+  refresh_posts()
 
 $('#availability_modal').on 'shown.bs.modal', -> 
   $(this).attr("z-index", "1000")

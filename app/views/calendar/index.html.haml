@@ -37,6 +37,7 @@
     .panel.panel-default
       .panel-heading.text-center
         Recent Posts
+<<<<<<< HEAD
       %ul.list-group
         %li.list-group-item
           .post-profile
@@ -99,3 +100,14 @@
         .user_calendar-modal
       .modal-footer
         %button.btn.btn-default{ :data => { :dismiss => "modal"}} Close
+=======
+      .panel-body
+        = render 'post_form'
+      %ul.list-group.all_posts
+  .col-md-4
+    .panel.panel-default
+      .panel-heading<>
+        My Calendar
+      .panel-body
+        .user_calendar
+>>>>>>> Posts

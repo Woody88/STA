@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150627071528) do
+ActiveRecord::Schema.define(version: 20150630061858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 20150627071528) do
 
   add_index "news_feeds", ["profile_id"], name: "index_news_feeds_on_profile_id", using: :btree
 
+  create_table "posts", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "posts", ["profile_id"], name: "index_posts_on_profile_id", using: :btree
+
   create_table "profiles", force: :cascade do |t|
     t.string   "fname"
     t.string   "lname"
@@ -85,6 +94,7 @@ ActiveRecord::Schema.define(version: 20150627071528) do
   add_index "shifts", ["profile_id"], name: "index_shifts_on_profile_id", using: :btree
 
   add_foreign_key "news_feeds", "profiles"
+  add_foreign_key "posts", "profiles"
   add_foreign_key "profiles", "employees"
   add_foreign_key "shifts", "profiles"
 end

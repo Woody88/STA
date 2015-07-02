@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
 
   get 'posted-shifts' => 'trade_center#all_posted_shifts', as: 'posted_shifts'
   get 'availability' => 'trade_center#all_availability', as: 'availability'
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
 
   resources :news_feeds
-
+  resources :posts
   devise_for :employees, :controllers => { :registrations => 'profile_account'}
 
   devise_scope :employee do
