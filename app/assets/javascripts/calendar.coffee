@@ -20,7 +20,7 @@ ready = ->
 
     return time
 
-  $('.user_calendar-modal').fullCalendar
+  $('.user_calendar').fullCalendar
     
     # Calendar View 
     editable: true,

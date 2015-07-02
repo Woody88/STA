@@ -22,92 +22,17 @@
           %strong 0
 / ---End 
 
-
-
 .row
-  .col-lg-5.col-lg-push-7.col-md-5.col-md-push-0.col-xs-12
-    .panel.panel-default
-      .panel-heading<>
-        %a.calendar-modal{ :role => "button", :data => {:toggle => "modal", :target => "#availability_modal"}}
-          My Calendar
-      .panel-body
-        .user_calendar-modal
-
-  .col-lg-7.col-lg-pull-5.col-md-7.col-md-pull-0.col-xs-12.col.xs-push-12
+  .col-md-7
     .panel.panel-default
       .panel-heading.text-center
         Recent Posts
-<<<<<<< HEAD
-      %ul.list-group
-        %li.list-group-item
-          .post-profile
-            = image_tag "http://static.nfl.com/static/content/public/static/img/fantasy/transparent/200x200/WOO661523.png?01AD=3n6mqKw_qL00dpnfbGHt_psO6gNStPFmrhrEnOUuVho8CHdcw_9g8Ow&01RI=0D206B0E41C6CD5&01NA=", class: "avatar50 inner-inline"
-            .post-name.inner-inline
-              Robert McIntosh
-              %p
-                %span Shared publicly
-                - 
-                %span Jun 27, 2014
-            %span.dropdown.pull-right
-              %span.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
-                %span.glyphicon.glyphicon-chevron-down{:class => "[ ]"}
-              %ul.dropdown-menu{:role => "menu"}
-                %li{:role => "presentation"}
-                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Action
-                %li{:role => "presentation"}
-                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Another action
-                %li{:role => "presentation"}
-                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Something else here
-                %li.divider{:role => "presentation"}
-                %li{:role => "presentation"}
-                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Separated link
-          %p.post-context<>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sodales, odio at rhoncus dictum, turpis nisi hendrerit felis, quis gravida eros nunc at metus. Vestibulum rutrum dignissim hendrerit. Nam molestie enim ut congue congue. Sed est ipsum, faucibus vitae tellus id, dignissim mollis turpis. Nam facilisis, enim non elementum tempor, augue diam cursus nulla, in fermentum ligula neque id mi.
-        %li.list-group-item
-          .post-profile
-            = image_tag "http://vignette4.wikia.nocookie.net/heroes/images/f/fc/AndoMasahashi.jpg/revision/latest?cb=20110531070605", class: "avatar50 inner-inline"
-            .post-name.inner-inline
-              Ando Masahashi
-              %p
-                %span Shared publicly
-                - 
-                %span Jun 27, 2014
-            %span.dropdown.pull-right
-              %span.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
-                %span.glyphicon.glyphicon-chevron-down{:class => "[ ]"}
-              %ul.dropdown-menu{:role => "menu"}
-                %li{:role => "presentation"}
-                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Action
-                %li{:role => "presentation"}
-                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Another action
-                %li{:role => "presentation"}
-                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Something else here
-                %li.divider{:role => "presentation"}
-                %li{:role => "presentation"}
-                  %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Separated link
-          %p.post-context<>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sodales, odio at rhoncus dictum, turpis nisi hendrerit felis, quis gravida eros nunc at metus. Vestibulum rutrum dignissim hendrerit. Nam molestie enim ut congue congue. Sed est ipsum, faucibus vitae tellus id, dignissim mollis turpis. Nam facilisis, enim non elementum tempor, augue diam cursus nulla, in fermentum ligula neque id mi.
-  
-
-#availability_modal.modal.fade{ :tabindex => "-1", :role => "dialog", :aria => {:labelledby => "availability_modal", :hidden => true} }
-  .modal-dialog
-    .modal-content
-      .modal-header 
-        %button.close{ :type => "button",:data => { :dimiss => "modal"}, :aria => { :hidden => "true"}}><
-          = "&times;".html_safe 
-        %h4.modal-title#modalTitle My Calendar
-      .modal-body
-        .user_calendar-modal
-      .modal-footer
-        %button.btn.btn-default{ :data => { :dismiss => "modal"}} Close
-=======
       .panel-body
         = render 'post_form'
       %ul.list-group.all_posts
-  .col-md-4
+  .col-md-5
     .panel.panel-default
       .panel-heading<>
         My Calendar
       .panel-body
         .user_calendar
->>>>>>> Posts
