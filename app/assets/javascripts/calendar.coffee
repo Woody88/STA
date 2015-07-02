@@ -3,14 +3,17 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 ready = ->
+  $("input[name=commit]").submit (event), ->
+    event.preventDefault()
+
   refresh_posts = ->
     $.ajax
+      type: 'GET'
       url: 'posts'
       success: (data) ->
-        console.log(data)
       complete: ->
         # Schedule the next request when the current one's complete
-        setTimeout refresh_posts, 4500
+        setTimeout refresh_posts, 60000
 
   DateConvert = (d) ->
     time = moment(d).utcOffset(d).format("HH:mm")

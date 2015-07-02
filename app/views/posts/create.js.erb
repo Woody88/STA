@@ -1,0 +1,6 @@
+$("form#new_post").on("ajax:success", function(){
+	$("textarea#post_content").val("");
+	var html = "<%= j render '/calendar/post', :locals => {:post => @post} %>" 
+    console.log(html);  	
+  	$(html).prependTo("ul.all_posts").slideDown("slow");
+});

@@ -12,9 +12,9 @@ ready = ->
     editable: true,
     displayEventEnd: true,
     header:
-      left: 'prev,next today',
+      left: 'prev',
       center: 'title',
-      right: 'month,agendaWeek,agendaDay'
+      right: 'next'
     defaultView: 'month',
     height: 500,
     aspectRatio: 2
