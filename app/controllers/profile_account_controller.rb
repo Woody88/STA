@@ -37,6 +37,8 @@ class ProfileAccountController < Devise::RegistrationsController
       profile_path(resource)
     end
 
+    
+
   	private 
 
 end

@@ -11,8 +11,6 @@
           = "#{profile.fname} #{profile.lname}" 
     %ul.nav.nav-pills.nav-stacked
       %li
-        = link_to "News", news_feeds_path
-      %li
         %a#trade-center{:href => "#"} Trade Center
         %ul#trade.nav.nav-pills.nav-stacked
           %li{:style => "padding-left: 8px; padding-right: 8px;"}
@@ -25,6 +23,8 @@
 
           %li{:style => "padding-left: 8px; padding-right: 8px;"}
             = link_to 'Trade Requests', trade_requests_path
+      %li
+        = link_to "Employees", employees_path
       %li
         = link_to "Calendar", calendar_path
       %li

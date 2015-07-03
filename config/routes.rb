@@ -8,6 +8,7 @@
   get 'trade_with_collegue/:id' => 'trade_center#trade_with_collegue', as: 'collegue_trade'
   get 'trade_requests' => 'trade_center#trade_requests', as: 'trade_requests'
   get 'pending_requests' => 'trade_center#pending_requests', as: 'pending_requests'
+  get 'employees' => 'profiles#all_employees', as: 'employees'
   post 'submit_shift' => 'trade_center#submit_shift', as: 'submit_shift'
   post '/cancel_shift/:id', to:'trade_center#cancel_shift', as: 'cancel_shift'
   post '/pick_up_shift/:id/pickup', to:'trade_center#pick_up_shift', as: 'pick_up_shift'
