@@ -1,15 +1,20 @@
-.navbar.navbar-default.navbar-fixed-top
+#nav-bar.navbar.navbar-default.navbar-fixed-top
   .container-fluid
     .navbar-header
-      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand{:href => "#"}><
-        STA
-        %small>< Center
     .collapse.navbar-collapse#bs-example-navbar-collapse-1
+      %ul.nav.navbar-nav.navbar-left
+        %li.dropdown 
+          %a.dropdown-toggle{:href => '#',"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            %span.glyphicon.glyphicon-envelope
+
+          %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu2"}
+            %li
+              %a
+                = image_tag avatar_url(current_employee), class: 'avatar30'
+                Woodson Delhia
+                %br 
+                lorem ipsum valsadsa dfsdfs dsadas...
+   
       %ul.nav.navbar-nav.navbar-right
         %li
           %a{:href => "#"} About
