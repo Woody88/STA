@@ -9,4 +9,14 @@ module ApplicationHelper
     	gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
     	"http://gravatar.com/avatar/#{gravatar_id}.png?s=200{CGI.escape(default_url)}"
   	end
+
+  	def flash_level(level)
+	    case level.to_sym
+	    when :notice then "alert-info"
+	    when :error then "alert-error"
+	    when :alert then ""
+	   	when :warning then "alert-warning fade in"
+	    when :success then "alert-success"
+	    end
+  	end
 end

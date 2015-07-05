@@ -3,7 +3,12 @@
   .col-md-7
     .panel.panel-default
       .panel-body.text-center
-        %h1 You are Off today!
+        -if work_today?(@today_task)
+          %h1
+            %em 
+              = "#{@today_task.position} #{@today_task.start_time.to_s(:time)} - #{@today_task.finish_time.to_s(:time)}"
+        -else
+          %h1 You are Off today!
       .panel-footer
         Schedule Task 
   .col-md-5 
@@ -24,11 +29,11 @@
 
 .row
   .col-md-5.col-md-push-7
-    .panel.panel-default
+    #calendar.panel.panel-default
       .panel-heading<>
         My Calendar
       .panel-body
-        .user_calendar
+        .user_full_calendar
 
   .col-md-7.col-md-pull-5
     .panel.panel-default

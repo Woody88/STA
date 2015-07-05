@@ -49,6 +49,9 @@ class TradeCenterController < ApplicationController
 
   
   def post_shift
+    if @shift.posted
+      redirect_to :back, :flash => { :warning => "This shift is already on the board!" }
+    end
   end
 
   def submit_shift
@@ -69,8 +72,8 @@ class TradeCenterController < ApplicationController
       post_shift = ShiftForTrade.new(dup_shift.attributes.except("type"))
     end
 
-    if post_shift.save
-      flash[:notice] = 'Shift successfully Posted.' if @shift.post!
+    if post_shift.save && @shift.post!
+      flash[:success] = 'Shift successfully Posted.'
       redirect_to posted_shifts_path
     else
       flash[:alert] = 'Could not post your shift on Trade Board!'
@@ -131,7 +134,7 @@ class TradeCenterController < ApplicationController
   end
 
   def cancel_shift
-     flash[:notice] = 'Shift successfully removed from board.' if @shift.destroy && @original_shift.unpost! 
+     flash[:success] = 'Shift successfully removed from board.' if @shift.destroy && @original_shift.unpost! 
      redirect_to posted_shifts_path
   end
 

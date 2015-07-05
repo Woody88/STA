@@ -4,6 +4,7 @@ json.array!(@shifts) do |shift|
   json.end shift.finish_time
   json.title shift.position
   json.id shift.id
+  json.posted shift.posted
   json.link post_shift_url(shift.id)
 
   
