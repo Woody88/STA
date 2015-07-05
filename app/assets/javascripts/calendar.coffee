@@ -91,7 +91,7 @@ ready = ->
           ends_at: "" + the_event.end,
           description: the_event.description
 
-  refresh_posts()
+
 
 $('#availability_modal').on 'shown.bs.modal', -> 
   $(this).attr("z-index", "1000")

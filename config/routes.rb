@@ -1,5 +1,6 @@
   Rails.application.routes.draw do
 
+
   get 'posted-shifts' => 'trade_center#all_posted_shifts', as: 'posted_shifts'
   get 'availability' => 'trade_center#all_availability', as: 'availability'
   get 'availability/date' => 'trade_center#available_on_date', as: 'available_on_date'
@@ -9,6 +10,7 @@
   get 'trade_requests' => 'trade_center#trade_requests', as: 'trade_requests'
   get 'pending_requests' => 'trade_center#pending_requests', as: 'pending_requests'
   get 'employees' => 'profiles#all_employees', as: 'employees'
+  get 'calendar' => 'calendar#index', as: 'calendar'
   post 'submit_shift' => 'trade_center#submit_shift', as: 'submit_shift'
   post '/cancel_shift/:id', to:'trade_center#cancel_shift', as: 'cancel_shift'
   post '/pick_up_shift/:id/pickup', to:'trade_center#pick_up_shift', as: 'pick_up_shift'
@@ -37,7 +39,7 @@
   end
   
   authenticated :employee do
-    root 'calendar#index', as: 'calendar'
+    root 'dashboards#index', as: 'dashboard'
   end
 
   root 'staticpages#index'
