@@ -91,6 +91,7 @@ footer
   width: 250px
   left: -250px
   z-index: 1000
+  box-shadow: 3px 1px 5px #292929
   -webkit-transition: all 0.5s ease-in-out
   -moz-transition: all 0.5s ease-in-out
   -o-transition: all 0.5s ease-in-out
@@ -112,7 +113,6 @@ footer
   font-weight: 600
   color: white
   z-index: 100
-  box-shadow: 3px 1px 5px #292929
   background-color: #292929
   border: 2px solid #292929
   a
@@ -138,12 +138,14 @@ footer
   background-color: white
   color: #333
   webkit-box-shadow: 2px 2px 2px #ac2925
-  box-shadow: 4px 1px 10px #ac2925
   z-index: 10
 
 .sidebar-nav >.nav > li > a:hover
   background-color: #333
   border-right: 5px solid #ac2925
+
+.sidebar-nav >.nav > li > a:visited
+  background-color: #333
 
 @media(min-width:768px) 
   #sidebar-wrapper
@@ -156,8 +158,15 @@ footer
 
 
 //////////////DASHBORD LAYOUT///////////////////////////////
+ul.nav li a:active
+
+
 ul#trade
   display: none
+ul#trade li > a:hover
+  background-color: #333
+  border-radius: 0 0 0 0
+  border-right: 5px solid #ac2925
 
 #trade li:first-child 
   padding-top: 5px
@@ -224,3 +233,4 @@ p.post-context
 
 .posting-submit-button
   margin-top: 15px
+

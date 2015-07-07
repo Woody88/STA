@@ -5,6 +5,7 @@ json.array!(@shifts) do |shift|
   json.title shift.position
   json.id shift.id
   json.posted shift.posted
+  json.original_owner shift.original_owner
   json.link post_shift_url(shift.id)
 
   

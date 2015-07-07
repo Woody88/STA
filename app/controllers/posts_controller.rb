@@ -16,6 +16,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    @posts = Post.all
     @post = profile.posts.create!(posts_params)
   end
 
@@ -23,7 +24,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
+    @post.destroy!
     respond_to do |format|
       format.js   { render :layout => false }
     end

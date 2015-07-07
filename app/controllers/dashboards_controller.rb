@@ -3,5 +3,6 @@ class DashboardsController < ApplicationController
   def index
   	today = Date.today.to_s(:long)
   	@today_task = profile.shifts.where(date: today).first
+  	@posts = Post.all.order("created_at DESC")
   end
 end

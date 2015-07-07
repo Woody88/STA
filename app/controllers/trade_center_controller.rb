@@ -1,8 +1,8 @@
 class TradeCenterController < ApplicationController
   before_action :authenticate_employee!
-  before_action :set_shift, only: [:pick_up_shift, :cancel_shift]
-  before_action :set_original_shift, only: [:pick_up_shift, :cancel_shift,]
-  before_action :set_dup_shift, only: [:post_shift, :trade_with_collegue]
+  before_action :set_remove_shift, only: [:pick_up_shift,:cancel_shift]
+  before_action :set_shift, only: [:pick_up_shift,:post_shift, :trade_with_collegue]
+  before_action :set_original_shift, only: [:pick_up_shift]
 
   respond_to :html, :json, :js
   def all_posted_shifts
@@ -107,7 +107,7 @@ class TradeCenterController < ApplicationController
         
         if @posted_shift.partial
           if @posted_shift.save && @original_shift.save
-            flash[:notice] = 'Shift successfully traded.' 
+            flash[:success] = 'Shift successfully traded.' 
             redirect_to calendar_path
           else
             flash[:alert] = "Shift Could not be Traded"
@@ -115,7 +115,7 @@ class TradeCenterController < ApplicationController
           end
         else 
           if @original_shift.save
-            flash[:notice] = 'Shift successfully traded.' 
+            flash[:success] = 'Shift successfully traded.' 
             redirect_to calendar_path
           else
             flash[:alert] = "Shift Could not be Traded"
@@ -124,7 +124,7 @@ class TradeCenterController < ApplicationController
         end
 
     else
-        flash[:alert] = "#{current_user.email} are already working that day."
+        flash[:alert] = "You are already scheduled on that day."
         redirect_to posted_shifts_path
     end
     
@@ -134,7 +134,7 @@ class TradeCenterController < ApplicationController
   end
 
   def cancel_shift
-     flash[:success] = 'Shift successfully removed from board.' if @shift.destroy && @original_shift.unpost! 
+     flash[:success] = 'Shift successfully removed from board.' if @posted_shift.destroy && @shift.unpost!
      redirect_to posted_shifts_path
   end
 
@@ -149,15 +149,14 @@ class TradeCenterController < ApplicationController
     @shift = Shift.find(params[:id])
   end
 
+  def set_remove_shift
+    @posted_shift = ShiftForTrade.find(params[:id])
+    @shift = @posted_shift.original_shift
+  end
+
   def set_original_shift
     @original_shift = Shift.find(@shift.post_id)
   end
-
-  def set_dup_shift
-    @shift = Shift.find(params[:id])
-    @dup = @shift.dup
-  end
-
   # Maybe put in different
   def set_shift_for_post(shift, start, finish)
       dup = shift.dup

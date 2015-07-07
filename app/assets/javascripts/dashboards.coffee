@@ -2,9 +2,18 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 ready = ->
-  
   DateConvert = (d) ->
     time = moment(d).utcOffset(d).format("HH:mm")
+
+
+  refresh_posts = ->
+    $.ajax
+      type: 'GET'
+      url: 'posts'
+      success: (data) ->
+      complete: ->
+        # Schedule the next request when the current one's complete
+        setTimeout refresh_posts, 60000
 
   $('#calendar').on 'click', (e) ->
     e.stopPropagation()
@@ -21,7 +30,7 @@ ready = ->
       center: 'title',
       right: 'month,agendaWeek,agendaDay'
     defaultView: 'month',
-    height: 500,
+    height: 400,
     aspectRatio: 1
     slotMinutes: 30,
     eventLimit: true,
@@ -37,9 +46,14 @@ ready = ->
         
         $('.fc-container').css('font-size', '1.8em !important')
         posted_shift_path = "post_shift/" + event.id.toString()
+        console.log(event.posted)
         if event.posted
           element.css('background-color', '#d43f3a')
- 
+
+        if event.original_owner != employee
+          element.css('background-color', 'green')
+
+        console.log(event.original_owner) 
         element.popover
             title: event.title,
             placement: 'bottom',
@@ -74,7 +88,7 @@ ready = ->
               
 
 
-
+  #refresh_posts()
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

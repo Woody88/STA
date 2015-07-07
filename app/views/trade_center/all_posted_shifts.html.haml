@@ -28,6 +28,6 @@
                 %td<
                   - if posted_shift.profile_id == profile.id 
                     = link_to 'Edit', "#", :class => "btn-sm btn-warning"
-                    = link_to 'Cancel', cancel_shift_path(posted_shift), :class => "btn-sm btn-danger", method: :post
+                    = link_to 'Remove', cancel_shift_path(posted_shift), method: :delete, data:{confirm: 'Are you sure?'}, :class => "btn-sm btn-danger"
                   - else
-                    = link_to 'Pick Up', pick_up_shift_path(posted_shift), :class => "btn-sm btn-succes", method: :post
+                    = link_to 'Pick Up', pick_up_shift_path(posted_shift), :class => "btn-sm btn-success", method: :post

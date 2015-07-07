@@ -7,18 +7,19 @@
         %p
           %span 
             = "Posted on #{post.created_at.to_date.to_s(:long)}"
-      %span.dropdown.pull-right
-        %span.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
-          %span.glyphicon.glyphicon-chevron-down{:class => "[ ]"}
-        %ul.dropdown-menu{:role => "menu"}
-          %li{:role => "presentation"}
-            %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Edit
-          %li{:role => "presentation"}
-            %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Another action
-          %li{:role => "presentation"}
-            %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Something else here
-          %li.divider{:role => "presentation"}
-          %li.btn-xs.btn-danger{:role => "presentation"}
-            = link_to "Delete this post", post, :method => :delete, :remote => true, :class => 'delete_post'
+      - if post.profile_id == profile.id
+        %span.dropdown.pull-right
+          %span.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+            %span.glyphicon.glyphicon-chevron-down{:class => "[ ]"}
+          %ul.dropdown-menu{:role => "menu"}
+            %li{:role => "presentation"}
+              %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Edit
+            %li{:role => "presentation"}
+              %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Another action
+            %li{:role => "presentation"}
+              %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Something else here
+            %li.divider{:role => "presentation"}
+            %li.btn-xs.btn-danger{:role => "presentation"}
+              = link_to "Delete this post", post,:method => :delete, :data => {:confirm => "Are you sure?"}, :remote => true, :class => 'delete_post'
     %p.post-context<>
       = "#{post.content}."

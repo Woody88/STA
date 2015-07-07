@@ -1,46 +1,9 @@
 class Shift < ActiveRecord::Base
   MIN_TIME = "00:00"
   MAX_TIME = "23:59" 
-  belongs_to :profile
-  has_many :for_trades, class_name: "ShiftForTrade", :foreign_key => "post_id"
+  belongs_to :profile, :inverse_of => :shifts, dependent: :destroy
+
   has_many :trade_with_collegues, class_name: "CollegueTrade", :foreign_key => "post_id"
-
-  attr_accessor :original_id # User to insert original shift record id 
-
-  # include Workflow
-  #   workflow do
-  #       state :new do
-  #            event :post, :transitions_to => :posted
-  #           event :split_shift, :transitions_to => :partial 
-  #           event :trade_request, :transitions_to => :pending_request
-  #           event :shift_trade, :transitions_to => :shift_trade
-  #       end
-
-  #       state :available
-  #       state :shift_trade do 
-  #           event :sold, :transitions_to => :new
-  #       end
-
-  #       state :partial do
-  #           event :post, :transitions_to => :posted
-  #                        :unless => :split?
-  #       end 
-  
-  #       state :posted do
-  #           event :sold, :transitions_to => :traded
-  #           event :cancel, :transitions_to => :new
-  #           event :trade_request, :transitions_to => :pending_request
-  #       end
-
-  #       state :pending_request do 
-  #          event :accept, :transitions_to => :traded
-  #          event :decline, :transitions_to => :new
-  #       end
-  #       state :traded do 
-  #           event :post, :transitions_to => :posted
-  #           event :trade_request, :transitions_to => :pending_request
-  #       end
-  #   end
 
     def calendar_start_time
         start.change(day: date.day, month: date.month, year: date.year)

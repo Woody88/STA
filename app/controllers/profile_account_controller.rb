@@ -14,9 +14,7 @@ class ProfileAccountController < Devise::RegistrationsController
       if params[:employee][:profile_attributes][:bid_line].nil?
         super
       else
-        profile.shifts.destroy_all unless profile.shifts.nil?
-        super
-        
+        super    
         if resource.save
           start_date = BidLine.first.lines.symbolize_keys[:day_1].to_date
           line_number = params[:employee][:profile_attributes][:bid_line].to_s

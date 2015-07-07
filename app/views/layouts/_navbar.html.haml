@@ -16,13 +16,13 @@
             %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu2"}
               %li
                 %a
-                  = image_tag avatar_url(current_employee), class: 'avatar30'
+                  /= image_tag avatar_url(current_employee), class: 'avatar30'
                   Woodson Delhia
                   %br 
                   lorem ipsum valsadsa dfsdfs dsadas...
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              = image_tag avatar_url(current_employee), class: "avatar30"
+              /= image_tag avatar_url(current_employee), class: "avatar30"
               = "#{profile.fname} #{profile.lname}" 
               %span.caret
 

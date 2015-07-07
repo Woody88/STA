@@ -18,6 +18,6 @@
           %a{:href => "#", :role => "menuitem", :tabindex => "-1"} Something else here
         %li.divider{:role => "presentation"}
         %li.btn-xs.btn-danger{:role => "presentation"}
-          = link_to "Delete this post", @post, :method => :delete, :remote => true, :class => 'delete_post'
+          = link_to "Delete this post", @post, :method => :delete, :data => {:confirm => "Are you sure?"},:remote => true, :class => 'delete_post'
   %p.post-context<>
     = "#{@post.content}."

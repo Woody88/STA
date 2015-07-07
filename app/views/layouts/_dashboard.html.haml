@@ -12,7 +12,7 @@
   .sidebar-nav 
     %header.sidebar-header
       .profile-avatar.inner-inline
-        = link_to image_tag(avatar_url(current_employee), class: "avatar40")
+        /= link_to image_tag(avatar_url(current_employee), class: "avatar40")
       .profile-body.inner-inline
         .links
           = link_to "Profile -"
@@ -22,9 +22,9 @@
     %ul.nav
       %li
         %a#trade-center{:href => "#"}
-          %span.glyphicon.glyphicon-transfer
+          %span.glyphicon.glyphicon-transfer>
             Trade Center 
-        %ul#trade.nav.nav-pills.nav-stacked
+        %ul#trade.nav.nav-pills.nav-stacked<
           %li{:style => "padding-left: 8px; padding-right: 8px;"}
             = link_to "Pick Up", posted_shifts_path
           %li{:style => "padding-left: 8px; padding-right: 8px;"}
@@ -51,7 +51,8 @@
         %a{:href => "http ://aircanada.ca"}
           %span.glyphicon.glyphicon-plane 
             Air Canada
-
+:javascript
+  var employee = #{profile.id}
 / .container-fluid.profile
 /   .row
 /     .col-md-3

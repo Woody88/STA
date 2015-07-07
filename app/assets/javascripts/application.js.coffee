@@ -19,11 +19,13 @@
 #= require paloma
 #= require_tree .
 
+
 ready = ->
 	$("#trade-center").click ->
 		$("#trade").slideToggle("500", ->)
 
-	  
+	
+
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
