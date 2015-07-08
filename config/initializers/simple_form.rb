@@ -6,7 +6,7 @@ SimpleForm.setup do |config|
   # stack. The options given below are used to wrap the
   # whole input.
   config.label_class = 'col-lg-2 control-label'
-  config.form_class = "simple_form form-horizontal"
+  config.default_form_class = "simple_form form-horizontal"
   config.wrappers :default, class: :input,
     hint_class: :field_with_hint, error_class: :field_with_errors do |b|
 

@@ -1,4 +1,4 @@
-<div class="col-md-6">
+<div class="col-md-12">
   <h2> Profile Account </h2>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, html: { class: 'form-horizontal' },
     wrapper: :horizontal_form,
@@ -16,7 +16,6 @@
       <%= f.simple_fields_for :profile do |p| %>
         <%= p.input :fname, label: "First Name" %>
         <%= p.input :lname, label: "Last Name" %>
-      
         <%= p.input :bid_line, label: false, :wrapper => :append do %>
           <%= p.input_field :bid_line, class: 'custom', disabled: true %>
           <span class="input-group-btn"><%= button_tag type: :button, class: "btn btn-danger", id:"enable_bidline" do %>
