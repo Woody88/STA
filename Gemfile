@@ -10,6 +10,7 @@ gem "haml-rails", "~> 0.9"
 gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form'
 gem 'fullcalendar-rails', '~> 2.1.1.0'
 gem 'momentjs-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use postgresql as the database for Active Record

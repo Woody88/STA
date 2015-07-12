@@ -10,14 +10,20 @@
     = csrf_meta_tags
   %body
     #page-content
-      - if employee_signed_in?
-        = render 'layouts/dashboard'
+      / Sidebar 
+      -if employee_signed_in?
+        = render 'layouts/sidebar'
+      
+      / Navbar
+      = render 'layouts/navbar'
+      
       #wrapper
-        = render 'layouts/navbar'
         - if flash
           - flash.each do |level, message|
             %div{:class => "alert #{flash_level(level)}"}
               %button.close{:"data-dismiss" => 'alert'}= "×"
               = message
+  
         = yield
-  = render 'layouts/footer'
+
+      = render 'layouts/footer'

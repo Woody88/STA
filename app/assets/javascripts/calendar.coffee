@@ -8,6 +8,10 @@ ready = ->
     time = moment(d).utcOffset(d).format("HH:mm")
 
     return time
+  $('.user_calendar').on 'click', (e) ->
+    e.stopPropagation()
+    $('html').on 'click', ->
+      $('.popover').remove()
 
   $('.user_calendar').fullCalendar
     

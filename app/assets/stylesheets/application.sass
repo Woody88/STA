@@ -28,6 +28,7 @@
   box-sizing: border-box
 
 
+
 .main
   padding-top: 50px
 ::-webkit-scrollbar
@@ -52,32 +53,31 @@ html, body
   width: 100%
   height: 100%
 
-footer 
+footer
+  position: relative
+  height: 30px
+  -webkit-transition: all 1s ease-in-out
+  transition: all 1s ease-in-out
 
-.container.registration
-  margin: 10px auto
-/*!
- * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
-
-/* Toggle Styles */
+/* Full Page Div */
 #page-content 
-  z-index: 5
+  position: relative
+  min-height: 100%
+  margin-bottom: -30px
+  overflow-x:hidden
 
 
 #wrapper
   width: 100%
   height: 100%
-  padding: 70px 10px
-  word-break: break-all
-  -webkit-transition: all 0.5s ease-in-out
-  -moz-transition: all 0.5s ease-in-out
-  -o-transition: all 0.5s ease-in-out
-  transition: all 0.5s ease-in-out
-  overflow-x: hidden
-  z-index: 100
+  padding-top: 60px
+  margin-bottom: 40px
+  word-break:break-all
+  -webkit-transition: all 1s ease-in-out
+  -moz-transition: all 1s ease-in-out
+  -o-transition: all 1s ease-in-out
+  transition: all 1s ease-in-out
+  overflow-x:auto
 
 .glyphicon-envelope
   font-size: 1.3em
@@ -147,13 +147,21 @@ footer
 .sidebar-nav >.nav > li > a:visited
   background-color: #333
 
-@media(min-width:768px) 
-  #sidebar-wrapper
+@media(min-width:768px)
+  aside#sidebar-wrapper 
     left: 0
+
   #wrapper
-    padding: 70px 10px 0 260px
+    padding: 0 15px 0 265px
+    padding-top: 60px
+
   footer
-    padding: 0 10px 0 260px
+    padding: 0 15px 0 265px
+  
+  
+
+
+  
 
 
 
