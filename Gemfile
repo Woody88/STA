@@ -10,6 +10,10 @@ gem "haml-rails", "~> 0.9"
 gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form'
 gem 'fullcalendar-rails', '~> 2.1.1.0'
 gem 'momentjs-rails'
+gem 'puma'
+
+gem 'websocket-rails', github: 'moaa/websocket-rails', branch: 'threadsocket-rails'
+gem 'websocket-rails-js', github: 'websocket-rails/websocket-rails-js', branch: 'sub_protocols'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'

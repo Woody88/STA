@@ -18,6 +18,8 @@
 #= require turbolinks
 #= require paloma
 #= require_tree .
+#= require websocket_rails/main
+
 
 
 ready = ->
