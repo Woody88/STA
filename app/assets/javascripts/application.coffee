@@ -16,17 +16,12 @@
 #= require fullcalendar
 #= require bootstrap-sprockets
 #= require turbolinks
-#= require paloma
-#= require_tree .
 #= require websocket_rails/main
-
-
-
+		
 ready = ->
 	$("#trade-center").click ->
 		$("#trade").slideToggle("500", ->)
 
-	
 
 
 $(document).ready(ready)

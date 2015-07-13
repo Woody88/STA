@@ -1,6 +1,12 @@
   Rails.application.routes.draw do
 
 
+  authenticated :employee do
+    root 'dashboards#index', as: 'dashboard'
+  end
+
+  root 'public_pages#main'
+  
   get 'posted-shifts' => 'trade_center#all_posted_shifts', as: 'posted_shifts'
   get 'availability' => 'trade_center#all_availability', as: 'availability'
   get 'availability/date' => 'trade_center#available_on_date', as: 'available_on_date'
@@ -21,8 +27,6 @@
 
   resources :bid_lines, only: [:index, :show]
 
-
-  resources :news_feeds
   resources :posts
   devise_for :employees, :controllers => { :registrations => 'profile_account'}
 
@@ -37,11 +41,7 @@
     end
   end
   
-  authenticated :employee do
-    root 'dashboards#index', as: 'dashboard'
-  end
 
-  root 'staticpages#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

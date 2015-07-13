@@ -19,4 +19,13 @@ module ApplicationHelper
 	    when :success then "alert-success fade in"
 	    end
   	end
+
+  	def controller_assets
+  		controller = params[:controller]
+  		
+  		if Rails.application.config.x.controller_with_assets.include? controller
+  			javascript_include_tag(controller, 'data-turbolinks-track' => true)  + stylesheet_link_tag(controller, 'data-turbolinks-track' => true)
+  		end
+  	end
+
 end

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 #Added gems
-gem 'paloma'
+gem 'paloma',  :git => 'https://github.com/kbparagua/paloma.git' 
 gem 'devise'
 gem 'workflow'
 gem 'bower-rails'

@@ -1,19 +1,12 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-ready = ->
+
+alert("hello")
+
+ready = ->  
   DateConvert = (d) ->
     time = moment(d).utcOffset(d).format("HH:mm")
-
-
-  refresh_posts = ->
-    $.ajax
-      type: 'GET'
-      url: 'posts'
-      success: (data) ->
-      complete: ->
-        # Schedule the next request when the current one's complete
-        setTimeout refresh_posts, 60000
 
   $('#calendar').on 'click', (e) ->
     e.stopPropagation()
@@ -88,7 +81,6 @@ ready = ->
               
 
 
-  #refresh_posts()
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

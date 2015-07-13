@@ -30,6 +30,13 @@ GIT
     websocket-rails-js (0.0.1)
       rails
 
+GIT
+  remote: https://github.com/kbparagua/paloma.git
+  revision: 06e25674333eca99803356351c0d808237742fcf
+  specs:
+    paloma (4.1.2)
+      jquery-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -170,8 +177,6 @@ GEM
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
-    paloma (4.2.0)
-      jquery-rails
     pg (0.18.2)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -297,7 +302,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-sass-rails
   momentjs-rails
-  paloma
+  paloma!
   pg
   pry
   puma

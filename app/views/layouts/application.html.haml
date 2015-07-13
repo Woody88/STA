@@ -3,10 +3,11 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
     %title
-      =yield(:title) 
+      = "#{params[:controller]}"
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = controller_assets
     = csrf_meta_tags
   %body
     #page-content
@@ -25,5 +26,7 @@
               = message
   
         = yield
+        = insert_paloma_hook 
 
       = render 'layouts/footer'
+

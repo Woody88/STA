@@ -4,6 +4,7 @@
 
 
 ready = ->
+
 	arrayOfDate = []
 
 	$('.availability_calendar').fullCalendar
@@ -77,10 +78,5 @@ ready = ->
         #$('.form-inputs').append('<div class="form-group string optional availability_date ' + date.format() + '" data-checked="true" ><label class="string optional col-lg-2 control-label col-sm-3 control-label" for="availability_date">Date</label><div class="col-sm-9"><input data-date=' +date.format() + ' class="string optional form-control form-control" type="text" name=' + date.format() + ' id="availability_date" ></div></div>')
 
 
-
 $(document).ready(ready)
 $(document).on('page:load', ready)
-
-
-
-# $('.form-inputs').append('<div class="form-group string optional availability_date"><label class="string optional col-lg-2 control-label col-sm-3 control-label" for="availability_date">Date</label><div class="col-sm-9"><input class="string optional form-control form-control" type="text" name="availability[date]" id="availability_date"></div></div>')

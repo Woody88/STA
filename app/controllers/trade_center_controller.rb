@@ -4,6 +4,7 @@ class TradeCenterController < ApplicationController
   before_action :set_shift, only: [:pick_up_shift,:post_shift, :trade_with_collegue]
   before_action :set_original_shift, only: [:pick_up_shift]
 
+
   respond_to :html, :json, :js
   def all_posted_shifts
   	@posted_shifts = ShiftForTrade.all
