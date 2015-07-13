@@ -1,12 +1,19 @@
-= simple_form_for(Post.new, action: 'create', remote: true,
-                  html: { class: 'form-horizontal'},
- 				  wrapper: :horizontal_form,
-  				  wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean }) do |f|
-  .form-inputs
-    .post-form-body-pic.inner-inline
-      = image_tag(avatar_url(current_employee), class: "avatar50")
-    .post-form-content.inner-inline
-      = f.input :content, input_html: {rows: "3"}, label: false, :placeholder => "Share something with everyone..."
-  = f.button :submit, value: "Post", class: "btn btn-danger pull-right new"
+#posting{"data-uri" => "#{request.host}:#{request.port}/websocket"}
+	%textarea#message.form-control.counted{:placeholder => "Type in your message", :rows => "5", :style => "margin-bottom:10px;"}
+	%h6#counter.pull-right 320 characters remaining
+	%button#new_post.btn.btn-info{:type => "submit"} Post New Message
+
+
+
+/ = simple_form_for(:postings,
+/                   html: { class: 'form-horizontal'},
+/  				  wrapper: :horizontal_form,
+/   				  wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean }) do |f|
+/   .form-inputs
+/     .post-form-body-pic.inner-inline
+/       = image_tag(avatar_url(current_employee), class: "avatar50")
+/     .post-form-content.inner-inline
+/       = f.input :content, input_html: {rows: "3"}, label: false, :placeholder => "Share something with everyone..."
+/   = f.button :submit, value: "Post", class: "btn btn-danger pull-right new"
 
 

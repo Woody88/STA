@@ -2,9 +2,18 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-alert("hello")
 
-ready = ->  
+ready = ->
+  dispatcher = new WebSocketRails($('#posting').data('uri'), true)
+  
+  dispatcher.bind 'new_post', (message) ->
+    html = "<li class='list-group-item'>" + message + "</li>"
+    $('.all_posts').prepend(html)
+
+  send = (message) ->
+    console.log(dispatcher)
+    dispatcher.trigger 'new_post', message
+
   DateConvert = (d) ->
     time = moment(d).utcOffset(d).format("HH:mm")
 
@@ -39,7 +48,7 @@ ready = ->
         
         $('.fc-container').css('font-size', '1.8em !important')
         posted_shift_path = "post_shift/" + event.id.toString()
-        console.log(event.posted)
+        #console.log(event.posted)
         if event.posted
           element.css('background-color', '#d43f3a')
 
@@ -79,6 +88,13 @@ ready = ->
         $('.collegue_trade').on "click", ->
           $(this).prop 'href', 'trade_with_collegue/' + calEvent.id
               
+## Recent Posts ##
+  $('#new_post').on 'click', (e) ->
+    e.preventDefault()
+    send($('#message').val())
+    $('#message').val('')
+
+
 
 
 
