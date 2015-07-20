@@ -13,6 +13,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require moment
+#= require ractive
 #= require fullcalendar
 #= require bootstrap-sprockets
 #= require turbolinks

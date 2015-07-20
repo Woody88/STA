@@ -7,15 +7,14 @@ class ApplicationController < ActionController::Base
   helper_method :profile
 
 
-  def profile
-    if current_employee
-      current_employee.profile
+    def profile
+      if current_employee
+        current_employee.profile
+      end
     end
-  end
-
 
     def after_sign_in_path_for(resource)
-      calendar_path
+      dashboard_path
     end
 
     protected

@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_employee!
   before_filter :post, only: [:destroy]
 
-  respond_to  :js
+  respond_to  :js, :json
 
   def index
     @posts = Post.all.order('created_at DESC')

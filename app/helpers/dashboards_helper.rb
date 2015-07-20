@@ -10,4 +10,8 @@ module DashboardsHelper
 		end
 	end
 
+  def can_remove(emp_id)
+  	profile.id.to_s.eql?(emp_id)
+  end
+
 end

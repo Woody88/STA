@@ -3,6 +3,15 @@ module ApplicationHelper
   		content_for :title, page_title.to_s
 	end
 
+  def profile
+    if current_employee
+      current_employee.profile
+    end
+  end
+
+  def can_remove(emp_id)
+
+  end
 
 	def avatar_url(user)
     	default_url = "http://www.gravatar.com/avatar/HASH"
@@ -24,7 +33,7 @@ module ApplicationHelper
   		controller = params[:controller]
   		
   		if Rails.application.config.x.controller_with_assets.include? controller
-  			javascript_include_tag(controller, 'data-turbolinks-track' => true)  + stylesheet_link_tag(controller, 'data-turbolinks-track' => true)
+  			javascript_include_tag("#{controller}/#{controller}", 'data-turbolinks-track' => true)  + stylesheet_link_tag(controller, 'data-turbolinks-track' => true)
   		end
   	end
 

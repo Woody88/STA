@@ -19,9 +19,15 @@ module STA
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
     ["private", "app/controllers/websocket_controllers"].each do |folder|
         config.autoload_paths << Rails.root.join(folder)
     end
+
+    %w( dashboards calendar public_pages profile_account posts trade_center).each do |folder|
+        config.assets.paths << Rails.root.join(folder)
+    end
+    
 
     
     # Do not swallow errors in after_commit/after_rollback callbacks.

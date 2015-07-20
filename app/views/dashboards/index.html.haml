@@ -11,21 +11,8 @@
           %h1 You are Off today!
       .panel-footer
         Schedule Task 
-  .col-md-5 
-    .panel.panel-default
-      .panel-heading
-        Trade Center Information 
-        %span.pull-right.glyphicon.glyphicon-refresh{role: "button", type: "submit"}
-      .panel-body
-        %p 
-          Shift For Trade:
-          %strong 30
-        %p 
-          Available Collegue For Today: 
-          %strong 10
-        %p 
-          Pending Request:
-          %strong 0
+  .col-md-5#trades-info
+    = render 'trade_center_info'
 / ---End 
 
 .row
@@ -42,5 +29,6 @@
         Recent Posts
       .panel-body
         = render 'post_form'
-      %ul.list-group.all_posts
-        = render 'posts'
+        
+      / %ul.list-group.all_posts
+      /   = render 'postings'

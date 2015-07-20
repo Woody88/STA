@@ -21,6 +21,10 @@
           = "#{profile.fname} #{profile.lname}" 
     %ul.nav
       %li
+        = link_to dashboard_path do
+          %span.glyphicon.glyphicon-dashboard
+            Dashboard 
+      %li
         %a#trade-center{:href => "#"}
           %span.glyphicon.glyphicon-transfer>
             Trade Center 

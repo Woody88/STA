@@ -7,6 +7,7 @@
 
   root 'public_pages#main'
   
+  get 'trade_center_info' => 'trade_center#trade_center_info', as: 'trade_center_info'
   get 'posted-shifts' => 'trade_center#all_posted_shifts', as: 'posted_shifts'
   get 'availability' => 'trade_center#all_availability', as: 'availability'
   get 'availability/date' => 'trade_center#available_on_date', as: 'available_on_date'
@@ -24,7 +25,7 @@
  
 
   get 'shifts' => 'shifts#index', as: 'shifts'
-
+  
   resources :bid_lines, only: [:index, :show]
 
   resources :posts

@@ -1,19 +1,9 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+#= require dashboards/post_widget
 
-
-ready = ->
-  dispatcher = new WebSocketRails($('#posting').data('uri'), true)
-  
-  dispatcher.bind 'new_post', (message) ->
-    html = "<li class='list-group-item'>" + message + "</li>"
-    $('.all_posts').prepend(html)
-
-  send = (message) ->
-    console.log(dispatcher)
-    dispatcher.trigger 'new_post', message
-
+ready = -> 
   DateConvert = (d) ->
     time = moment(d).utcOffset(d).format("HH:mm")
 
@@ -88,11 +78,28 @@ ready = ->
         $('.collegue_trade').on "click", ->
           $(this).prop 'href', 'trade_with_collegue/' + calEvent.id
               
-## Recent Posts ##
+## New Posts ##
   $('#new_post').on 'click', (e) ->
     e.preventDefault()
     send($('#message').val())
     $('#message').val('')
+
+  dispatcher = new WebSocketRails($('#posting').data('uri'), true)
+  
+  dispatcher.on_open = (data) ->
+    console.log('Connection has been established: ', data);
+
+  channel = dispatcher.subscribe 'posts'
+
+  channel.bind 'new_post', (message) ->
+    console.log(message)
+    message.created_at = "less than a minute"
+    ractive.unshift('list', message)
+
+  send = (message) ->
+    dispatcher.trigger 'posting', message
+
+
 
 
 
