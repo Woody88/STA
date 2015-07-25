@@ -18,6 +18,7 @@
 #= require bootstrap-sprockets
 #= require turbolinks
 #= require websocket_rails/main
+#= require socket_app
 		
 ready = ->
 	$("#trade-center").click ->

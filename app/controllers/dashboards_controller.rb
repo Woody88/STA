@@ -1,7 +1,7 @@
 class DashboardsController < ApplicationController
 	before_action :authenticate_employee!
   
-  respond_to :js	
+  respond_to :js, :json
 	
   def index
   	today = Date.today.to_s(:long)
@@ -15,5 +15,8 @@ class DashboardsController < ApplicationController
   def trade_center_info
   	@shift_for_trade = ShiftForTrade.count
   	@available_employees = Shift.where(:date => Date.today, :available => true).count
+    respond_to do |format|
+      format.json {render json: {pickUps: @shift_for_trade, availables: @available_employees} }
+    end
   end
 end

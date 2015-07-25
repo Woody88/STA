@@ -33,5 +33,8 @@ module STA
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.enabled = true
+
+    config.cache_store = :redis_store, 'redis://localhost:9292/0/cache', { expires_in: 90.minutes }
+
   end
 end

@@ -1,6 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+#= require dashboards/trade_info_widget
 #= require dashboards/post_widget
 
 ready = -> 
@@ -78,32 +79,14 @@ ready = ->
         $('.collegue_trade').on "click", ->
           $(this).prop 'href', 'trade_with_collegue/' + calEvent.id
               
-## New Posts ##
-  $('#new_post').on 'click', (e) ->
-    e.preventDefault()
-    send($('#message').val())
-    $('#message').val('')
-
-  dispatcher = new WebSocketRails($('#posting').data('uri'), true)
+  ## Private Msging Testing will be removed later ##
+  PrivateMsg = new Ractive
+    el: "#template2Wrapper"
+    template: '#template2'
   
-  dispatcher.on_open = (data) ->
-    console.log('Connection has been established: ', data);
-
-  channel = dispatcher.subscribe 'posts'
-
-  channel.bind 'new_post', (message) ->
-    console.log(message)
-    message.created_at = "less than a minute"
-    ractive.unshift('list', message)
-
-  send = (message) ->
-    dispatcher.trigger 'posting', message
-
-
-
-
-
-
+   $('#private_msg').on 'submit', (event) ->
+    SocketApp.sendPrivateMessage(event)
+  
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

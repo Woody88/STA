@@ -28,4 +28,6 @@
         = yield
 
       = render 'layouts/footer'
+      - if employee_signed_in?
+        #user{"data-name" => "#{profile.fname} #{profile.lname}:#{profile.id}"}
 

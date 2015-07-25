@@ -11,17 +11,25 @@
           %h1 You are Off today!
       .panel-footer
         Schedule Task 
-  .col-md-5#trades-info
+  .col-md-5#trades-info{"data-uri"=>"#{request.host}:#{ request.port}/websocket"}
     = render 'trade_center_info'
 / ---End 
 
 .row
   .col-md-5.col-md-push-7
-    #calendar.panel.panel-default
-      .panel-heading<>
-        My Calendar
-      .panel-body
-        .user_full_calendar
+    .row
+      .col-md-12
+        #calendar.panel.panel-default
+          .panel-heading<>
+            My Calendar
+          .panel-body
+            .user_full_calendar
+      .col-md-12
+        .panel.panel-default
+          .panel-heading<>
+
+          .panel-body
+          = render 'postings'   
 
   .col-md-7.col-md-pull-5
     .panel.panel-default
@@ -30,5 +38,3 @@
       .panel-body
         = render 'post_form'
         
-      / %ul.list-group.all_posts
-      /   = render 'postings'
