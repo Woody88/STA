@@ -10,8 +10,9 @@ class WebsocketControllers::PostingsController < WebsocketRails::BaseController
 	end
 
 	def new_trade_post
+		puts "new trade post"
 		shift_for_pick = ShiftForTrade.count
-		broadcast_message 'new_trade_post', {pickUpShifts: shift_for_pick}
+		broadcast_message 'new_trade_post', {pick: "#{shift_for_pick}"}
 	end
 
 	def private_message

@@ -74,8 +74,9 @@ class TradeCenterController < ApplicationController
     end
 
     if post_shift.save && @shift.post!
-      flash[:success] = 'Shift successfully Posted.'
-      WebsocketRails[:trades].trigger(:new_trade_post, "helllo")
+      shiftForPick = ShiftForTrade.count
+      WebsocketRails[:trades].trigger('new_trade_post', {pickUpShifts: shiftForPick})
+      flash[:success] = "Shift successfully Posted."
       redirect_to posted_shifts_path
     else
       flash[:alert] = 'Could not post your shift on Trade Board!'
@@ -136,9 +137,10 @@ class TradeCenterController < ApplicationController
   end
 
   def cancel_shift
-     flash[:success] = 'Shift successfully removed from board.' if @posted_shift.destroy && @shift.unpost!
-     WebsocketRails[:trades].trigger(:new_trade_post, "helllo")
-     redirect_to posted_shifts_path
+    flash[:success] = 'Shift successfully removed from board.' if @posted_shift.destroy && @shift.unpost!
+    shiftForPick = ShiftForTrade.count
+    WebsocketRails[:trades].trigger('new_trade_post', {pickUpShifts: shiftForPick})
+    redirect_to posted_shifts_path
   end
 
 

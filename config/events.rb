@@ -13,7 +13,7 @@ WebsocketRails::EventMap.describe do
   # The above will handle an event triggered on the client like `product.new`.
 
   subscribe :posting, to: WebsocketControllers::PostingsController, with_method: :new_post 
-  subscribe :trades, to: WebsocketControllers::PostingsController, with_method: :new_trade_post
+  #subscribe :tradings, to: WebsocketControllers::PostingsController, with_method: :new_trade_post
   subscribe :private_message, to: WebsocketControllers::PostingsController, with_method: :private_message 
   subscribe :client_connected, to: WebsocketControllers::PostingsController, :with_method => :client_connected
   subscribe :client_disconnected, to: WebsocketControllers::PostingsController, with_method: :delete_user
